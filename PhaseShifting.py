@@ -42,9 +42,9 @@ def main():
         cap=cv.VideoCapture(1) # External web camera
         cap.open
     num:int=5
-    F:int=5 #35num
+    F:int=9 #35
     F1=F
-    F2=int(float(F)*9.0/16.0)
+    F2=int(float(F)*16.0/9.0)
 
     #generate x pattern
     phaseshiftingX=sl.PhaseShifting(num,F1)
