@@ -13,9 +13,10 @@ if firstTimeRun:
     basler.Basler.parameterizeCamera()
 
 screen_id=2
-imageX_name='imageX_PhaseShifting'
-imageY_name='imageY_PhaseShifting'
-imageXY_name='imageXY_PhaseShifting'
+specified='_white'
+imageX_name='imageX_PhaseShifting'+specified
+imageY_name='imageY_PhaseShifting'+specified
+imageXY_name='imageXY_PhaseShifting'+specified
 
 def imshowAndCapture(cap, img_pattern, delay=350):
     window_name='projector'

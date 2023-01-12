@@ -4,8 +4,8 @@
     "\\Samples",
     "\\Samples\\C#",
     "\\Samples\\C#\\Basler.Pylon",
-    "\\Samples\\C#\\Basler.Pylon\\ParametrizeCamera_AutoFunctions"
+    "\\Samples\\C#\\Basler.Pylon\\ParametrizeCamera_LoadAndSave"
   ],
-  "SelectedNode": "\\Samples\\C#\\Basler.Pylon\\pylon.NET.API.Samples.sln",
+  "SelectedNode": "\\Samples\\C#\\Basler.Pylon\\ParametrizeCamera_LoadAndSave\\ParametrizeCamera_LoadAndSave.cs",
   "PreviewInSolutionExplorer": false
 }
