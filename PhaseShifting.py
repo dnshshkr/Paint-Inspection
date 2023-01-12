@@ -5,7 +5,6 @@ import cv2 as cv
 import numpy as np
 import structuredlight as sl
 import screeninfo
-from pypylon import pylon
 from matplotlib import pyplot as plt
 import basler
 firstTimeRun=0
@@ -18,7 +17,7 @@ imageX_name='imageX_PhaseShifting'+specified
 imageY_name='imageY_PhaseShifting'+specified
 imageXY_name='imageXY_PhaseShifting'+specified
 
-def imshowAndCapture(cap, img_pattern, delay=350):
+def imshowAndCapture(cap, img_pattern, delay=400):
     window_name='projector'
     cv.imshow(window_name, img_pattern)
     cv.waitKey(delay)
@@ -43,19 +42,18 @@ def main():
         cap=cv.VideoCapture(1) # External web camera
         cap.open
     num:int=5
-    F:int=35
-    num1=num2=num
+    F:int=5 #35num
     F1=F
     F2=int(float(F)*9.0/16.0)
 
     #generate x pattern
-    phaseshiftingX=sl.PhaseShifting(num1,F1)
+    phaseshiftingX=sl.PhaseShifting(num,F1)
     imlist_posi_x_pat=phaseshiftingX.generate((width,height))
     #imlist_nega_x_pat=[cv.rotate(img,cv.ROTATE_180) for img in imlist_posi_x_pat]
     #imlist_posi_x_pat.extend(imlist_nega_x_pat)
 
     #generate y pattern
-    phaseshiftingY=sl.PhaseShifting(num2,F2)
+    phaseshiftingY=sl.PhaseShifting(num,F2)
     imlist=phaseshiftingY.generate((width, height))
     imlist_posi_y_pat=sl.transpose(imlist)
     #imlist_nega_y_pat=[cv.rotate(img,cv.ROTATE_180) for img in imlist_posi_y_pat]
@@ -85,7 +83,7 @@ def main():
     cap.end()
 
     # Delete unused variables
-    del num,num1,num2,F,F1,F2,imlist,imlist_posi_x_pat,imlist_posi_x_cap,imlist_posi_y_pat,imlist_posi_y_cap
+    del num,F,F1,F2,imlist,imlist_posi_x_pat,imlist_posi_x_cap,imlist_posi_y_pat,imlist_posi_y_cap
 
     # Visualize decode result
     img_correspondence = cv.merge([0.0*np.zeros_like(img_index_x), img_index_x/width, img_index_y/height])

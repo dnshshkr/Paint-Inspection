@@ -1,28 +1,22 @@
 import cv2 as cv
 import numpy as np
 import os
-import PhaseShifting
-use_camera=0
-use_image=1
+use_camera=1
+use_image=0
 path=r'image processing\white\\'
 for file_name in os.listdir(path):
     if os.path.isfile(path+file_name):
         os.remove(path+file_name)
-if use_camera:
-    imageX_name=PhaseShifting.imageX_name
-    imageY_name=PhaseShifting.imageY_name
-    imageXY_name=PhaseShifting.imageXY_name
-elif use_image:
-    last_name='PhaseShifting_white'
-    imageX_name='imageX_'+last_name
-    imageY_name='imageY_'+last_name
-    imageXY_name='imageXY_'+last_name
+last_name='PhaseShifting_white'
+imageX_name='imageX_'+last_name
+imageY_name='imageY_'+last_name
+imageXY_name='imageXY_'+last_name
 caption_size=1
 imgX=cv.imread(imageX_name+'.png',cv.IMREAD_COLOR)
 imgY=cv.imread(imageY_name+'.png',cv.IMREAD_COLOR)
 imgXY=cv.imread(imageXY_name+'.png',cv.IMREAD_COLOR)
 
-final_result=imgX
+final_result=imgXY.copy()
 result=cv.cvtColor(final_result,cv.COLOR_BGR2GRAY)
 
 cv.putText(imgX,'imageX',(5,30),cv.FONT_HERSHEY_SIMPLEX,caption_size,(0,0,255),2)
@@ -32,6 +26,8 @@ cv.imwrite(path+'1. imageX.png',imgX)
 cv.imwrite(path+'2. imageY.png',imgY)
 cv.imwrite(path+'3. imageXY.png',imgXY)
 
+def process():
+    main()
 def main():
     global result
     process={1:smoothen_image,
@@ -52,7 +48,7 @@ def main():
     stitch_image_array.append(stitch)
     result,stitch=process[5](result,8,1)
     stitch_image_array.append(stitch)
-    result,stitch=process[6](result,9,1)
+    result,stitch=process[6](result,9,0)
     stitch_image_array.append(stitch)
 
     #find contours
@@ -131,7 +127,7 @@ def dilate_image(result,step,enable):#dilate
     return result,result_dilate
 
 def convert_binary(result,step,enable):#change to black & white
-    result=cv.threshold(result,127,255,cv.THRESH_BINARY)[1] if enable else result #85 #128
+    result=cv.threshold(result,170,255,cv.THRESH_BINARY)[1] if enable else result #85 #128 #170
     result_threshold=cv.cvtColor(result,cv.COLOR_GRAY2BGR)
     cv.putText(result_threshold,'threshold enabled' if enable else 'threshold disabled',(5,30),cv.FONT_HERSHEY_SIMPLEX,caption_size,(0,0,255),2)
     cv.imwrite(path+str(step)+'. threshold.png',result_threshold)
