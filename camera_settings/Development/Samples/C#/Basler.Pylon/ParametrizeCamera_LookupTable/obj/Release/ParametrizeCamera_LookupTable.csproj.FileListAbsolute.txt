@@ -1,0 +1,9 @@
+E:\Delloyd\Paint Inspection\Python codes\camera_settings\Development\Samples\C#\Basler.Pylon\bin\Release\ParametrizeCamera_LookupTable.exe.config
+E:\Delloyd\Paint Inspection\Python codes\camera_settings\Development\Samples\C#\Basler.Pylon\bin\Release\ParametrizeCamera_LookupTable.exe
+E:\Delloyd\Paint Inspection\Python codes\camera_settings\Development\Samples\C#\Basler.Pylon\bin\Release\ParametrizeCamera_LookupTable.pdb
+E:\Delloyd\Paint Inspection\Python codes\camera_settings\Development\Samples\C#\Basler.Pylon\ParametrizeCamera_LookupTable\obj\Release\ParametrizeCamera_LookupTable.csproj.AssemblyReference.cache
+E:\Delloyd\Paint Inspection\Python codes\camera_settings\Development\Samples\C#\Basler.Pylon\ParametrizeCamera_LookupTable\obj\Release\ParametrizeCamera_LookupTable.csproj.SuggestedBindingRedirects.cache
+E:\Delloyd\Paint Inspection\Python codes\camera_settings\Development\Samples\C#\Basler.Pylon\ParametrizeCamera_LookupTable\obj\Release\ParametrizeCamera_LookupTable.csproj.CoreCompileInputs.cache
+E:\Delloyd\Paint Inspection\Python codes\camera_settings\Development\Samples\C#\Basler.Pylon\ParametrizeCamera_LookupTable\obj\Release\ParametrizeCamera_LookupTable.csproj.CopyComplete
+E:\Delloyd\Paint Inspection\Python codes\camera_settings\Development\Samples\C#\Basler.Pylon\ParametrizeCamera_LookupTable\obj\Release\ParametrizeCamera_LookupTable.exe
+E:\Delloyd\Paint Inspection\Python codes\camera_settings\Development\Samples\C#\Basler.Pylon\ParametrizeCamera_LookupTable\obj\Release\ParametrizeCamera_LookupTable.pdb

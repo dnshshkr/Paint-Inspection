@@ -1,0 +1,9 @@
+E:\Delloyd\Paint Inspection\Python codes\camera_settings\Development\Samples\C#\Basler.Pylon\bin\Debug\Grab_UsingSequencer.exe.config
+E:\Delloyd\Paint Inspection\Python codes\camera_settings\Development\Samples\C#\Basler.Pylon\bin\Debug\Grab_UsingSequencer.exe
+E:\Delloyd\Paint Inspection\Python codes\camera_settings\Development\Samples\C#\Basler.Pylon\bin\Debug\Grab_UsingSequencer.pdb
+E:\Delloyd\Paint Inspection\Python codes\camera_settings\Development\Samples\C#\Basler.Pylon\Grab_UsingSequencer\obj\Debug\Grab_UsingSequencer.csproj.AssemblyReference.cache
+E:\Delloyd\Paint Inspection\Python codes\camera_settings\Development\Samples\C#\Basler.Pylon\Grab_UsingSequencer\obj\Debug\Grab_UsingSequencer.csproj.SuggestedBindingRedirects.cache
+E:\Delloyd\Paint Inspection\Python codes\camera_settings\Development\Samples\C#\Basler.Pylon\Grab_UsingSequencer\obj\Debug\Grab_UsingSequencer.csproj.CoreCompileInputs.cache
+E:\Delloyd\Paint Inspection\Python codes\camera_settings\Development\Samples\C#\Basler.Pylon\Grab_UsingSequencer\obj\Debug\Grab_UsingSequencer.csproj.CopyComplete
+E:\Delloyd\Paint Inspection\Python codes\camera_settings\Development\Samples\C#\Basler.Pylon\Grab_UsingSequencer\obj\Debug\Grab_UsingSequencer.exe
+E:\Delloyd\Paint Inspection\Python codes\camera_settings\Development\Samples\C#\Basler.Pylon\Grab_UsingSequencer\obj\Debug\Grab_UsingSequencer.pdb

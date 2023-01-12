@@ -1,0 +1,9 @@
+E:\Delloyd\Paint Inspection\Python codes\camera_settings\Development\Samples\C#\Basler.Pylon\bin\Release\Grab.exe.config
+E:\Delloyd\Paint Inspection\Python codes\camera_settings\Development\Samples\C#\Basler.Pylon\bin\Release\Grab.exe
+E:\Delloyd\Paint Inspection\Python codes\camera_settings\Development\Samples\C#\Basler.Pylon\bin\Release\Grab.pdb
+E:\Delloyd\Paint Inspection\Python codes\camera_settings\Development\Samples\C#\Basler.Pylon\Grab\obj\Release\Grab.csproj.AssemblyReference.cache
+E:\Delloyd\Paint Inspection\Python codes\camera_settings\Development\Samples\C#\Basler.Pylon\Grab\obj\Release\Grab.csproj.SuggestedBindingRedirects.cache
+E:\Delloyd\Paint Inspection\Python codes\camera_settings\Development\Samples\C#\Basler.Pylon\Grab\obj\Release\Grab.csproj.CoreCompileInputs.cache
+E:\Delloyd\Paint Inspection\Python codes\camera_settings\Development\Samples\C#\Basler.Pylon\Grab\obj\Release\Grab.csproj.CopyComplete
+E:\Delloyd\Paint Inspection\Python codes\camera_settings\Development\Samples\C#\Basler.Pylon\Grab\obj\Release\Grab.exe
+E:\Delloyd\Paint Inspection\Python codes\camera_settings\Development\Samples\C#\Basler.Pylon\Grab\obj\Release\Grab.pdb

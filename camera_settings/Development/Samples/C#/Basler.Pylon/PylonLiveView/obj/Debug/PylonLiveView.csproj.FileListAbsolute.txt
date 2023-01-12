@@ -1,0 +1,15 @@
+E:\Delloyd\Paint Inspection\Python codes\camera_settings\Development\Samples\C#\Basler.Pylon\bin\Debug\PylonLiveView.exe.config
+E:\Delloyd\Paint Inspection\Python codes\camera_settings\Development\Samples\C#\Basler.Pylon\bin\Debug\PylonLiveView.exe
+E:\Delloyd\Paint Inspection\Python codes\camera_settings\Development\Samples\C#\Basler.Pylon\bin\Debug\PylonLiveView.pdb
+E:\Delloyd\Paint Inspection\Python codes\camera_settings\Development\Samples\C#\Basler.Pylon\PylonLiveView\obj\Debug\PylonLiveView.csproj.AssemblyReference.cache
+E:\Delloyd\Paint Inspection\Python codes\camera_settings\Development\Samples\C#\Basler.Pylon\PylonLiveView\obj\Debug\PylonLiveView.csproj.SuggestedBindingRedirects.cache
+E:\Delloyd\Paint Inspection\Python codes\camera_settings\Development\Samples\C#\Basler.Pylon\PylonLiveView\obj\Debug\PylonLiveViewControl.EnumerationComboBoxUserControl.resources
+E:\Delloyd\Paint Inspection\Python codes\camera_settings\Development\Samples\C#\Basler.Pylon\PylonLiveView\obj\Debug\PylonLiveViewControl.FloatSliderUserControl.resources
+E:\Delloyd\Paint Inspection\Python codes\camera_settings\Development\Samples\C#\Basler.Pylon\PylonLiveView\obj\Debug\PylonLiveView.MainForm.resources
+E:\Delloyd\Paint Inspection\Python codes\camera_settings\Development\Samples\C#\Basler.Pylon\PylonLiveView\obj\Debug\PylonLiveView.Properties.Resources.resources
+E:\Delloyd\Paint Inspection\Python codes\camera_settings\Development\Samples\C#\Basler.Pylon\PylonLiveView\obj\Debug\PylonLiveViewControl.IntSliderUserControl.resources
+E:\Delloyd\Paint Inspection\Python codes\camera_settings\Development\Samples\C#\Basler.Pylon\PylonLiveView\obj\Debug\PylonLiveView.csproj.GenerateResource.cache
+E:\Delloyd\Paint Inspection\Python codes\camera_settings\Development\Samples\C#\Basler.Pylon\PylonLiveView\obj\Debug\PylonLiveView.csproj.CoreCompileInputs.cache
+E:\Delloyd\Paint Inspection\Python codes\camera_settings\Development\Samples\C#\Basler.Pylon\PylonLiveView\obj\Debug\PylonLiveView.csproj.CopyComplete
+E:\Delloyd\Paint Inspection\Python codes\camera_settings\Development\Samples\C#\Basler.Pylon\PylonLiveView\obj\Debug\PylonLiveView.exe
+E:\Delloyd\Paint Inspection\Python codes\camera_settings\Development\Samples\C#\Basler.Pylon\PylonLiveView\obj\Debug\PylonLiveView.pdb

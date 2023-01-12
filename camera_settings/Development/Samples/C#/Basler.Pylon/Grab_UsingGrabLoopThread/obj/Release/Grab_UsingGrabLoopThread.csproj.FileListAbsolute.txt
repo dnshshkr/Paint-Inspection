@@ -1,0 +1,9 @@
+E:\Delloyd\Paint Inspection\Python codes\camera_settings\Development\Samples\C#\Basler.Pylon\bin\Release\Grab_UsingGrabLoopThread.exe.config
+E:\Delloyd\Paint Inspection\Python codes\camera_settings\Development\Samples\C#\Basler.Pylon\bin\Release\Grab_UsingGrabLoopThread.exe
+E:\Delloyd\Paint Inspection\Python codes\camera_settings\Development\Samples\C#\Basler.Pylon\bin\Release\Grab_UsingGrabLoopThread.pdb
+E:\Delloyd\Paint Inspection\Python codes\camera_settings\Development\Samples\C#\Basler.Pylon\Grab_UsingGrabLoopThread\obj\Release\Grab_UsingGrabLoopThread.csproj.AssemblyReference.cache
+E:\Delloyd\Paint Inspection\Python codes\camera_settings\Development\Samples\C#\Basler.Pylon\Grab_UsingGrabLoopThread\obj\Release\Grab_UsingGrabLoopThread.csproj.SuggestedBindingRedirects.cache
+E:\Delloyd\Paint Inspection\Python codes\camera_settings\Development\Samples\C#\Basler.Pylon\Grab_UsingGrabLoopThread\obj\Release\Grab_UsingGrabLoopThread.csproj.CoreCompileInputs.cache
+E:\Delloyd\Paint Inspection\Python codes\camera_settings\Development\Samples\C#\Basler.Pylon\Grab_UsingGrabLoopThread\obj\Release\Grab_UsingGrabLoopThread.csproj.CopyComplete
+E:\Delloyd\Paint Inspection\Python codes\camera_settings\Development\Samples\C#\Basler.Pylon\Grab_UsingGrabLoopThread\obj\Release\Grab_UsingGrabLoopThread.exe
+E:\Delloyd\Paint Inspection\Python codes\camera_settings\Development\Samples\C#\Basler.Pylon\Grab_UsingGrabLoopThread\obj\Release\Grab_UsingGrabLoopThread.pdb

@@ -1,0 +1,5 @@
+if (WIN32)
+  add_executable( GUI_ImageWindow GUI_ImageWindow.cpp)
+  target_link_libraries( GUI_ImageWindow PRIVATE pylon::pylon )
+  install( TARGETS GUI_ImageWindow )
+endif()

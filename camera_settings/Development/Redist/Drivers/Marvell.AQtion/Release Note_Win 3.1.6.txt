@@ -1,0 +1,158 @@
+# Marvell FastLinQ Edge Network Adapter Windows Driver
+Oct 19, 2021
+
+##v3.1.6.0
+_Date 19.10.2021_
+* Updated Marvell product name to "Marvell AQtion Network Adapter"
+* Add Win11 folder for driver binaries.
+
+##v3.1.5.0
+_Date 07.10.2021_
+* Updated RSC OOB data fields in NBL.
+
+##v3.1.4.0
+_Date 11.08.2021_
+* Added CodeQl changes.
+* Increase chip reset timeout to 2s
+* Updated ASUS Device Description for model XG-C100C.
+
+##v3.1.3.0
+_Date 05.07.2021_
+* Merged the changes from dev-release-3.0.x
+* Added power management registry entry
+* Modify ASUS Device Description for model XG-C100C
+* Patch for WOL Issue
+* Support for Win11
+
+## v3.1.2.0
+_Date 02.06.2021_
+* Fixed NDISTest failures introduced with 3.1.0.0
+* Logging linkstate at every boot-up
+* 1c_OIDSwmi fails due to DASH status indication
+* Driver updated to support Antigua DeviceIDs
+* SleepOnDisconnect (D3D) Removed
+* Add HWID for Lenovo AQC113C
+* Add HWID for GigaByte-GC-AQC113C
+* Added TODO on minor issues seen after merge
+* Dirty wake with S3 and S4
+* Added HWID for ASROCK-Z690
+
+## v3.1.1.0
+_Date 28.04.2021_
+* Fixed NDISTest failures introduced in previous build 
+
+## v3.1.0.0
+_Date 22.04.2021_
+* Added DASH support (integrated from 2.x branch)
+* Added Service Mode support (from 2.x branch)
+* Merged miscellaneous minor fixes and improvements from v2.x
+
+##v3.0.21.0
+_Date 29.06.2021_
+* Modify ASUS Device Description for model XG-C100C.
+
+##v3.0.20.0
+_Date 09.06.2021_
+* Driver updated to support Antigua DeviceIDs
+* SleepOnDisconnect (D3D) Removed
+* Logging linkstate at every boot-up
+* Add HWID for Lenovo AQC113C
+* Add HWID for GigaByte-GC-AQC113C
+* Dirty wake with S3 and S4
+* Added HWID for ASROCK-Z690 
+
+## v3.0.19.0
+_Date 22.01.2021_
+* Removed unsupported RSS IPv6 extension header capability
+* Removed unsupported half duplex speeds
+* Disable DeviceSleepOnDisconnect by default
+* Correct Hardware IDs for AQC113-based Asus NIC
+* Enabled WakeFromPowerOff for AQC113
+
+## v3.0.18.0
+_Date 18.11.2020_
+* Added Hardware IDs for AQC113-based Asus NIC
+* Windows 8/8.1: enable PM by default for AQC113 (HCK requirement)
+* Fixed RSC offload configuration (HLK test failure)
+* Added workaround for OffloadLSO test failure in HLK 19041
+
+## v3.0.17.0
+_Date 12.10.2020_
+* Security checks for secure AQC113 parts
+
+## v3.0.16.0
+_Date 31.08.2020_
+* Support for Antigua B0 counters
+* Additional HWIDs for Antigua
+* Advertise 2.5G/5G NBase-T speeds along with 2.5/5G Base-T
+* Add logging of 10Mbps link speed to system log.
+* Fix reporting DeviceSleepOnDisconnect capability on Atlantic
+* Fix RSC & Hyper-V vSwitch problem 
+
+
+## v3.0.15.0
+_Date 09.06.2020_
+* Low Power on Media Disconnect
+* Init-time instructions (as part of Low Power on Disconnect)
+* Conformance to latest filtering spec: don't touch multicast filter
+* Enable EEE for AQC113 family
+* Fix TX stuck recovery logic
+* Fixes & improvements for RSS logic for AQC107/AQC113
+* Fixes D0->D3 state transition: drain transmit before disable interrupts
+
+## v3.0.14.0
+_Date 05.05.2020_
+* Filtering infrastructure
+* Dynamic interrupt resources allocation
+* Separate trace flag for firmware layer
+* Enable EEE at 1G link speed for AQC111C/AQC112C 
+* Improve RX checksum offload workaround for AQC107
+* Fix security checks on AQC107
+* Remove auto-generation of MAC address
+* Tidy up code
+
+## v3.0.13.0
+_Date 27.03.2020_
+* Wake Reason Indications
+* Provide firmware with the current MAC address
+* WMI interface (not compatible with 2.x driver)
+* Cable Diagnostics
+* Changes for NDISTest compatibility
+* Minor misc fixes and improvements
+
+## v3.0.12.0
+_Date 06.03.2020_
+* Wake on ping behavior with ARP offload
+* Update reset sequence
+* Cleanup HAL
+
+## v3.0.11.0
+_Date 18.02.2020_
+* Fixes for NDISTest
+* Rework internal link parameters
+* Update CI
+* Update non-FF register to `0x1c`
+
+## v3.0.10.0
+_Date 05.02.2020_
+* Set max frame length according to “Jumbo Packet” driver setting
+* Add thermal shutdown support
+* Add downshift support
+* Link interrupt support
+* Rework internal adapter state transitions
+
+## v3.0.9.0
+_Date 17.01.2020_
+* Fix setting of packet filters for all multicast
+* Fix setting of PFC
+* Use standardized INF keywords for speed & duplex
+* Introduce support for 10Mbps link speed
+* Introduce support for half duplex
+
+## v3.0.8.0: Alpha driver v3.0.8.0 for AQC113 famil
+_Date 09.01.2020_
+* Basic backward compatibility with AQC100/AQC107/AQC108
+* Fixes for RSS multi-group
+* Reworked interrupts logic
+* Other minor fixes for AQC113 family
+

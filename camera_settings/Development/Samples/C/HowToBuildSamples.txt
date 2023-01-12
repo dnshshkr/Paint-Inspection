@@ -1,0 +1,16 @@
+How To Build pylon Samples
+==========================
+This set of samples includes a solution file and project files for 
+Microsoft Visual Studio 2010, and make files for the Borland C++ compiler.
+
+Execute the following steps to build the samples:
+1. Copy the Samples\C folder to a working folder of your choice.
+   Make sure that the folder is not under \Program Files and
+   that you have the required rights to write to that folder.
+2. Navigate to the folder you created in the previous step.
+3. Depending on the used tool set realize the following steps:
+   a) To build the samples with Microsoft Visual Studio 2010 or newer, 
+      open the solution or project files, and build the
+      solution configuration of your choice.
+   b) To build the samples with the Borland C++ compiler, 
+      execute the buildall.cmd batch script.

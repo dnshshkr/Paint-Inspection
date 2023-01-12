@@ -1,0 +1,9 @@
+E:\Delloyd\Paint Inspection\Python codes\camera_settings\Development\Samples\C#\Basler.Pylon\bin\Debug\AutoImageAdjustmentButton.exe.config
+E:\Delloyd\Paint Inspection\Python codes\camera_settings\Development\Samples\C#\Basler.Pylon\bin\Debug\AutoImageAdjustmentButton.exe
+E:\Delloyd\Paint Inspection\Python codes\camera_settings\Development\Samples\C#\Basler.Pylon\bin\Debug\AutoImageAdjustmentButton.pdb
+E:\Delloyd\Paint Inspection\Python codes\camera_settings\Development\Samples\C#\Basler.Pylon\ParametrizeCamera_AutomaticImageAdjustment\obj\Debug\ParametrizeCamera_AutomaticImageAdjustment.csproj.AssemblyReference.cache
+E:\Delloyd\Paint Inspection\Python codes\camera_settings\Development\Samples\C#\Basler.Pylon\ParametrizeCamera_AutomaticImageAdjustment\obj\Debug\ParametrizeCamera_AutomaticImageAdjustment.csproj.SuggestedBindingRedirects.cache
+E:\Delloyd\Paint Inspection\Python codes\camera_settings\Development\Samples\C#\Basler.Pylon\ParametrizeCamera_AutomaticImageAdjustment\obj\Debug\ParametrizeCamera_AutomaticImageAdjustment.csproj.CoreCompileInputs.cache
+E:\Delloyd\Paint Inspection\Python codes\camera_settings\Development\Samples\C#\Basler.Pylon\ParametrizeCamera_AutomaticImageAdjustment\obj\Debug\ParametrizeCamera_AutomaticImageAdjustment.csproj.CopyComplete
+E:\Delloyd\Paint Inspection\Python codes\camera_settings\Development\Samples\C#\Basler.Pylon\ParametrizeCamera_AutomaticImageAdjustment\obj\Debug\AutoImageAdjustmentButton.exe
+E:\Delloyd\Paint Inspection\Python codes\camera_settings\Development\Samples\C#\Basler.Pylon\ParametrizeCamera_AutomaticImageAdjustment\obj\Debug\AutoImageAdjustmentButton.pdb

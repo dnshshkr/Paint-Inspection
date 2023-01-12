@@ -1,0 +1,9 @@
+E:\Delloyd\Paint Inspection\Python codes\camera_settings\Development\Samples\C#\Basler.Pylon\bin\Debug\Utility_AnnouceRemoteDevice.exe.config
+E:\Delloyd\Paint Inspection\Python codes\camera_settings\Development\Samples\C#\Basler.Pylon\bin\Debug\Utility_AnnouceRemoteDevice.exe
+E:\Delloyd\Paint Inspection\Python codes\camera_settings\Development\Samples\C#\Basler.Pylon\bin\Debug\Utility_AnnouceRemoteDevice.pdb
+E:\Delloyd\Paint Inspection\Python codes\camera_settings\Development\Samples\C#\Basler.Pylon\Utility_AnnouceRemoteDevice\obj\Debug\Utility_AnnouceRemoteDevice.csproj.AssemblyReference.cache
+E:\Delloyd\Paint Inspection\Python codes\camera_settings\Development\Samples\C#\Basler.Pylon\Utility_AnnouceRemoteDevice\obj\Debug\Utility_AnnouceRemoteDevice.csproj.SuggestedBindingRedirects.cache
+E:\Delloyd\Paint Inspection\Python codes\camera_settings\Development\Samples\C#\Basler.Pylon\Utility_AnnouceRemoteDevice\obj\Debug\Utility_AnnouceRemoteDevice.csproj.CoreCompileInputs.cache
+E:\Delloyd\Paint Inspection\Python codes\camera_settings\Development\Samples\C#\Basler.Pylon\Utility_AnnouceRemoteDevice\obj\Debug\Utility_AnnouceRemoteDevice.csproj.CopyComplete
+E:\Delloyd\Paint Inspection\Python codes\camera_settings\Development\Samples\C#\Basler.Pylon\Utility_AnnouceRemoteDevice\obj\Debug\Utility_AnnouceRemoteDevice.exe
+E:\Delloyd\Paint Inspection\Python codes\camera_settings\Development\Samples\C#\Basler.Pylon\Utility_AnnouceRemoteDevice\obj\Debug\Utility_AnnouceRemoteDevice.pdb

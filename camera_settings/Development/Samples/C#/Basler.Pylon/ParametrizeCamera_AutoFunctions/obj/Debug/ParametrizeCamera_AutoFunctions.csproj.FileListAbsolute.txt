@@ -1,0 +1,9 @@
+E:\Delloyd\Paint Inspection\Python codes\camera_settings\Development\Samples\C#\Basler.Pylon\bin\Debug\ParametrizeCamera_AutoFunctions.exe.config
+E:\Delloyd\Paint Inspection\Python codes\camera_settings\Development\Samples\C#\Basler.Pylon\bin\Debug\ParametrizeCamera_AutoFunctions.exe
+E:\Delloyd\Paint Inspection\Python codes\camera_settings\Development\Samples\C#\Basler.Pylon\bin\Debug\ParametrizeCamera_AutoFunctions.pdb
+E:\Delloyd\Paint Inspection\Python codes\camera_settings\Development\Samples\C#\Basler.Pylon\ParametrizeCamera_AutoFunctions\obj\Debug\ParametrizeCamera_AutoFunctions.csproj.AssemblyReference.cache
+E:\Delloyd\Paint Inspection\Python codes\camera_settings\Development\Samples\C#\Basler.Pylon\ParametrizeCamera_AutoFunctions\obj\Debug\ParametrizeCamera_AutoFunctions.csproj.SuggestedBindingRedirects.cache
+E:\Delloyd\Paint Inspection\Python codes\camera_settings\Development\Samples\C#\Basler.Pylon\ParametrizeCamera_AutoFunctions\obj\Debug\ParametrizeCamera_AutoFunctions.csproj.CoreCompileInputs.cache
+E:\Delloyd\Paint Inspection\Python codes\camera_settings\Development\Samples\C#\Basler.Pylon\ParametrizeCamera_AutoFunctions\obj\Debug\ParametrizeCamera_AutoFunctions.csproj.CopyComplete
+E:\Delloyd\Paint Inspection\Python codes\camera_settings\Development\Samples\C#\Basler.Pylon\ParametrizeCamera_AutoFunctions\obj\Debug\ParametrizeCamera_AutoFunctions.exe
+E:\Delloyd\Paint Inspection\Python codes\camera_settings\Development\Samples\C#\Basler.Pylon\ParametrizeCamera_AutoFunctions\obj\Debug\ParametrizeCamera_AutoFunctions.pdb

@@ -1,0 +1,16 @@
+E:\Delloyd\Paint Inspection\Python codes\camera_settings\Development\Samples\C#\Basler.Pylon\bin\Release\GUI_SampleMultiCam.exe.config
+E:\Delloyd\Paint Inspection\Python codes\camera_settings\Development\Samples\C#\Basler.Pylon\bin\Release\GUI_SampleMultiCam.exe
+E:\Delloyd\Paint Inspection\Python codes\camera_settings\Development\Samples\C#\Basler.Pylon\bin\Release\GUI_SampleMultiCam.pdb
+E:\Delloyd\Paint Inspection\Python codes\camera_settings\Development\Samples\C#\Basler.Pylon\GUI_SampleMultiCam\obj\Release\GUI_SampleMultiCam.csproj.AssemblyReference.cache
+E:\Delloyd\Paint Inspection\Python codes\camera_settings\Development\Samples\C#\Basler.Pylon\GUI_SampleMultiCam\obj\Release\GUI_SampleMultiCam.csproj.SuggestedBindingRedirects.cache
+E:\Delloyd\Paint Inspection\Python codes\camera_settings\Development\Samples\C#\Basler.Pylon\GUI_SampleMultiCam\obj\Release\GUISampleMultiCam.EnumerationComboBoxUserControl.resources
+E:\Delloyd\Paint Inspection\Python codes\camera_settings\Development\Samples\C#\Basler.Pylon\GUI_SampleMultiCam\obj\Release\GUISampleMultiCam.MainForm.resources
+E:\Delloyd\Paint Inspection\Python codes\camera_settings\Development\Samples\C#\Basler.Pylon\GUI_SampleMultiCam\obj\Release\GUISampleMultiCam.ParameterSliderUserControl.resources
+E:\Delloyd\Paint Inspection\Python codes\camera_settings\Development\Samples\C#\Basler.Pylon\GUI_SampleMultiCam\obj\Release\GUISampleMultiCam.PictureWindow.resources
+E:\Delloyd\Paint Inspection\Python codes\camera_settings\Development\Samples\C#\Basler.Pylon\GUI_SampleMultiCam\obj\Release\GUISampleMultiCam.Properties.Resources.resources
+E:\Delloyd\Paint Inspection\Python codes\camera_settings\Development\Samples\C#\Basler.Pylon\GUI_SampleMultiCam\obj\Release\GUISampleMultiCam.SettingsPanel.resources
+E:\Delloyd\Paint Inspection\Python codes\camera_settings\Development\Samples\C#\Basler.Pylon\GUI_SampleMultiCam\obj\Release\GUI_SampleMultiCam.csproj.GenerateResource.cache
+E:\Delloyd\Paint Inspection\Python codes\camera_settings\Development\Samples\C#\Basler.Pylon\GUI_SampleMultiCam\obj\Release\GUI_SampleMultiCam.csproj.CoreCompileInputs.cache
+E:\Delloyd\Paint Inspection\Python codes\camera_settings\Development\Samples\C#\Basler.Pylon\GUI_SampleMultiCam\obj\Release\GUI_SampleMultiCam.csproj.CopyComplete
+E:\Delloyd\Paint Inspection\Python codes\camera_settings\Development\Samples\C#\Basler.Pylon\GUI_SampleMultiCam\obj\Release\GUI_SampleMultiCam.exe
+E:\Delloyd\Paint Inspection\Python codes\camera_settings\Development\Samples\C#\Basler.Pylon\GUI_SampleMultiCam\obj\Release\GUI_SampleMultiCam.pdb
