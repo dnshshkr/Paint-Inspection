@@ -82,7 +82,7 @@ def main():
             prevx,prevy=x,y
             #print('prevx: {}, prevy: {}'.format(prevx,prevy))
     cv.putText(final_result,'final result',(5,30),cv.FONT_HERSHEY_SIMPLEX,caption_size,(0,0,255),2)
-    cv.imwrite('image processing//9. final result.png',final_result)
+    cv.imwrite('image processing/10. final result.png',final_result)
 
     stitch_r0=np.concatenate((imgX,imgY,saveXY),axis=1)
     stitch_r1=np.concatenate((result_medianBlur,result_erode,result_dilate),axis=1)
