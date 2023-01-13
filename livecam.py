@@ -16,7 +16,7 @@ while cam.isLive:
         cv2.destroyAllWindows()
         break
     elif keyboard.is_pressed('s') or keyboard.is_pressed('S'):
-        path='captures/'+DEFAULT_FILENAME
+        path='image processing/gray/'+DEFAULT_FILENAME
         suffix='.png'
         while True:
             if pathlib.Path(path+suffix).is_file:

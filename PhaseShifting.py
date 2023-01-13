@@ -12,7 +12,7 @@ if firstTimeRun:
     basler.Basler.parameterizeCamera()
 
 screen_id=2
-specified='_white'
+specified='_gray'
 imageX_name='imageX_PhaseShifting'+specified
 imageY_name='imageY_PhaseShifting'+specified
 imageXY_name='imageXY_PhaseShifting'+specified
@@ -41,10 +41,10 @@ def main():
     except:
         cap=cv.VideoCapture(1) # External web camera
         cap.open
-    num:int=5
-    F:int=9 #35
+    num:int=7
+    F:int=10 #35
     F1=F
-    F2=int(float(F)*16.0/9.0)
+    F2=int(float(F)*9.0/16.0)
 
     #generate x pattern
     phaseshiftingX=sl.PhaseShifting(num,F1)
