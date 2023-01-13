@@ -9,7 +9,7 @@ cam=basler.Basler(mode=basler.MODE_LIVE,image_size=(1920,1080),rotate_image=180)
 cv2.namedWindow(WINDOW_NAME,cv2.WINDOW_GUI_NORMAL)
 cv2.moveWindow(WINDOW_NAME,0,0)
 while cam.isLive:
-    img=cam.live()
+    img=cam.retrieve()
     cv2.imshow(WINDOW_NAME,img)
     if cv2.waitKey(1)==27 or cv2.getWindowProperty(WINDOW_NAME,cv2.WND_PROP_VISIBLE)<1:
         cam.end()

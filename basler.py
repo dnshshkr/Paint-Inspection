@@ -27,8 +27,7 @@ class Basler:
         except:
             print('no basler camera is found')
             del self
-        finally:
-            print('camera started')
+        print('camera started')
         self.mode=mode
         if mode is MODE_LIVE:
             self._camera.StartGrabbing(pylon.GrabStrategy_LatestImageOnly)
@@ -36,21 +35,19 @@ class Basler:
             self._converter.OutputPixelFormat=pylon.PixelType_BGR8packed
             self._converter.OutputBitAlignment=pylon.OutputBitAlignment_MsbAligned
             self.isLive=self._camera.IsGrabbing()
-    def live(self):
+    def retrieve(self):
         if self.mode==MODE_LIVE:
             self._grabResult=self._camera.RetrieveResult(5000,pylon.TimeoutHandling_ThrowException)
-            self.liveFeed=self._converter.Convert(self._grabResult)
-            self.liveFeed=self.liveFeed.GetArray()
-            self.liveFeed=cv2.resize(self.liveFeed,self.image_size) if self.image_size!=(DEFAULT_IMAGE_WIDTH,DEFAULT_IMAGE_HEIGHT) else self.liveFeed
-            self.liveFeed=cv2.rotate(self.liveFeed,self.image_orientation) if self.image_orientation!=DEAFULT_IMAGE_ORIENTATION else self.liveFeed
-            return self.liveFeed
+            self._liveFeed=self._converter.Convert(self._grabResult)
+            self._liveFeed=self._liveFeed.GetArray()
+            self._liveFeed=cv2.resize(self._liveFeed,self.image_size) if self.image_size!=(DEFAULT_IMAGE_WIDTH,DEFAULT_IMAGE_HEIGHT) else self._liveFeed
+            self._liveFeed=cv2.rotate(self._liveFeed,self.image_orientation) if self.image_orientation!=DEAFULT_IMAGE_ORIENTATION else self._liveFeed
+            return self._liveFeed
         elif self.mode==Basler.MODE_CAPTURE:
-            raise SyntaxError('camera is not in live mode, consider changing mode to MODE_LIVE')
-    def capture(self):
-        self.instantImage=self._camera.GrabOne(_DEFAULT_TIMEOUT).Array
-        self.instantImage=cv2.resize(self.instantImage,self.image_size) if self.image_size!=(DEFAULT_IMAGE_WIDTH,DEFAULT_IMAGE_HEIGHT) else self.instantImage
-        self.instantImage=cv2.rotate(self.instantImage,self.image_orientation) if self.image_orientation!=DEAFULT_IMAGE_ORIENTATION else self.instantImage
-        return self.instantImage
+            self._instantImage=self._camera.GrabOne(_DEFAULT_TIMEOUT).Array
+            self._instantImage=cv2.resize(self._instantImage,self.image_size) if self.image_size!=(DEFAULT_IMAGE_WIDTH,DEFAULT_IMAGE_HEIGHT) else self._instantImage
+            self._instantImage=cv2.rotate(self._instantImage,self.image_orientation) if self.image_orientation!=DEAFULT_IMAGE_ORIENTATION else self._instantImage
+            return self._instantImage
     def end(self):
         self._camera.StopGrabbing()
         self._camera.Close()
