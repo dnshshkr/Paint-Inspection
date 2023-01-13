@@ -3,32 +3,22 @@ from imutils import perspective,contours
 import imutils
 import numpy as np
 import cv2
-import pypylon.pylon as py
+import basler
 #width=0.925
 width=0.891
-cam_ratio=2/3
+cam_ratio=5472/3648
 resize_y=768
 window_name='object_dim'
 k=7
 def midpoint(ptA,ptB):
     return ((ptA[0]+ptB[0])*0.5,(ptA[1]+ptB[1])*0.5)
-cam=py.InstantCamera(py.TlFactory.GetInstance().CreateFirstDevice())
-cam.StartGrabbing(py.GrabStrategy_LatestImageOnly)
-converter=py.ImageFormatConverter()
-converter.OutputPixelFormat=py.PixelType_BGR8packed
-converter.OutputBitAlignment=py.OutputBitAlignment_MsbAligned
-while cam.IsGrabbing():
-    grabResult=cam.RetrieveResult(5000,py.TimeoutHandling_ThrowException)
-    if grabResult.GrabSucceeded():
-        image=converter.Convert(grabResult)
-        img=image.GetArray()
-        img=cv2.resize(img,(int(resize_y/cam_ratio),resize_y))
+cam=basler.Basler(mode=basler.MODE_LIVE,image_size=(int(resize_y/cam_ratio),resize_y),rotate_image=180)
+while cam.isLive:
+    #print(cam.grabSucceed)
+    img=cam.retrieve()
+    if cam.grabSucceed:
         orig=img.copy()
-        #img=cv2.GaussianBlur(img,(7,7),100)
-        #img=cv2.GaussianBlur(img,(k,k),0)
         img=cv2.blur(img,(9,9),0)
-        cv2.namedWindow('blur',cv2.WINDOW_NORMAL)
-        cv2.imshow('blur',img)
         try:
             edge=cv2.Canny(img,50,100)
             edge=cv2.dilate(edge,None,iterations=1)
@@ -37,8 +27,8 @@ while cam.IsGrabbing():
             cnts=imutils.grab_contours(cnts)
             (cnts,_)=contours.sort_contours(cnts)
         except:
-            img=cv2.putText(img,'No contours detected',(10,30),cv2.FONT_HERSHEY_SIMPLEX,0.65,(0,0,255),2)
-            cv2.imshow(window_name,img)
+            orig=cv2.putText(img,'No contours detected',(10,30),cv2.FONT_HERSHEY_SIMPLEX,0.65,(0,0,255),2)
+            cv2.imshow(window_name,orig)
         pixelsPerMetric=None
         cv2.namedWindow(window_name,cv2.WINDOW_NORMAL)
         #cv2.moveWindow(window_name,0,0)
@@ -50,6 +40,7 @@ while cam.IsGrabbing():
                 # else:
                 #     continue
                 continue
+            print('pass')
             box=cv2.minAreaRect(c)
             box=cv2.boxPoints(box)
             box=np.array(box,dtype='int')
@@ -77,8 +68,7 @@ while cam.IsGrabbing():
             cv2.putText(orig, "{:.1f}mm".format(dimB),(int(tltrX - 15), int(tltrY - 10)), cv2.FONT_HERSHEY_SIMPLEX,0.65, (255, 255, 0), 2)
             cv2.putText(orig, "{:.1f}mm".format(dimA),(int(trbrX + 10), int(trbrY)), cv2.FONT_HERSHEY_SIMPLEX,0.65, (255, 255, 0), 2)
             cv2.imshow(window_name,orig)
-        grabResult.Release()
-    if cv2.waitKey(1)==27 or cv2.getWindowProperty(window_name,cv2.WND_PROP_VISIBLE)<1:
-        cam.StopGrabbing()
-        break
+        if cv2.waitKey(1)==27 or cv2.getWindowProperty(window_name,cv2.WND_PROP_VISIBLE)<1:
+            cam.end()
+            break
 cv2.destroyAllWindows()

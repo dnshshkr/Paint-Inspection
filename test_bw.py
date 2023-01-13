@@ -1,6 +1,6 @@
 import cv2 as cv
 import numpy as np
-img=cv.imread('image processing/white/7. dilate_1.png',cv.IMREAD_GRAYSCALE)
+img=cv.imread('image processing/black/7. dilate_1.png',cv.IMREAD_GRAYSCALE)
 #img=cv.resize(img,(600,480))
 for i in range(256):
     imgb=cv.threshold(img,i,255,cv.THRESH_BINARY)[1]

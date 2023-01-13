@@ -3,11 +3,12 @@ import numpy as np
 import os
 use_camera=1
 use_image=0
-save_path=r'image processing\gray\\'
+part_color='black'
+save_path='image processing/'+part_color+'/'
 for file_name in os.listdir(save_path):
     if os.path.isfile(save_path+file_name):
         os.remove(save_path+file_name)
-last_name='PhaseShifting_gray'
+last_name='PhaseShifting_'+part_color
 imageX_name='imageX_'+last_name
 imageY_name='imageY_'+last_name
 imageXY_name='imageXY_'+last_name
@@ -41,17 +42,17 @@ def main():
     stitch_image_array=[]
     result,stitch=process[2](result,4,0)
     stitch_image_array.append(stitch)
-    result,stitch=process[1](result,5,1)
+    result,stitch=process[1](result,5,0)
     stitch_image_array.append(stitch)
     result,stitch=process[3](result,6,1)
     stitch_image_array.append(stitch)
-    result,stitch=process[4](result,7,1)
+    result,stitch=process[4](result,7,0)
     stitch_image_array.append(stitch)
     result,stitch=process[5](result,8,0)
     stitch_image_array.append(stitch)
     result,stitch=process[6](result,9,1)
     stitch_image_array.append(stitch)
-    result,stitch=process[7](result,10,1)
+    result,stitch=process[7](result,10,0)
     stitch_image_array.append(stitch)
 
     #find contours
@@ -92,6 +93,7 @@ def main():
 
 def smoothen_image(result,step,enable):#filter noise
     result=cv.medianBlur(result,3) if enable else result
+    #result=cv.blur(result,(9,9),0) if enable else result
     result_medianBlur=cv.cvtColor(result,cv.COLOR_GRAY2BGR)
     cv.putText(result_medianBlur,'medianBlur enabled' if enable else 'medianBlur disabled',(5,30),cv.FONT_HERSHEY_SIMPLEX,caption_size,(0,0,255),2)
     cv.imwrite(save_path+str(step)+'. medianBlur_'+str(enable)+'.png',result_medianBlur)
@@ -137,7 +139,7 @@ def laplacian(result,step,enable):#laplacian
     return result,result_laplacian
 
 def convert_binary(result,step,enable):#change to black & white
-    result=cv.threshold(result,0,255,cv.THRESH_BINARY)[1] if enable else result #85 #128 #170
+    result=cv.threshold(result,127,255,cv.THRESH_BINARY)[1] if enable else result #85 #128 #170
     result_threshold=cv.cvtColor(result,cv.COLOR_GRAY2BGR)
     cv.putText(result_threshold,'threshold enabled' if enable else 'threshold disabled',(5,30),cv.FONT_HERSHEY_SIMPLEX,caption_size,(0,0,255),2)
     cv.imwrite(save_path+str(step)+'. threshold_'+str(enable)+'.png',result_threshold)

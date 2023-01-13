@@ -5,7 +5,7 @@ import subprocess
 MODE_LIVE:bool=0
 MODE_CAPTURE:bool=1
 DEFAULT_IMAGE_WIDTH=5472
-DEFAULT_IMAGE_HEIGHT=1080
+DEFAULT_IMAGE_HEIGHT=3648
 DEAFULT_IMAGE_ORIENTATION=0
 _DEFAULT_TIMEOUT=5000
 class Basler:
@@ -38,12 +38,14 @@ class Basler:
     def retrieve(self):
         if self.mode==MODE_LIVE:
             self._grabResult=self._camera.RetrieveResult(5000,pylon.TimeoutHandling_ThrowException)
+            self.grabSucceed=self._grabResult.GrabSucceeded()
             self._liveFeed=self._converter.Convert(self._grabResult)
             self._liveFeed=self._liveFeed.GetArray()
             self._liveFeed=cv2.resize(self._liveFeed,self.image_size) if self.image_size!=(DEFAULT_IMAGE_WIDTH,DEFAULT_IMAGE_HEIGHT) else self._liveFeed
             self._liveFeed=cv2.rotate(self._liveFeed,self.image_orientation) if self.image_orientation!=DEAFULT_IMAGE_ORIENTATION else self._liveFeed
+            self._grabResult.Release()
             return self._liveFeed
-        elif self.mode==Basler.MODE_CAPTURE:
+        elif self.mode==MODE_CAPTURE:
             self._instantImage=self._camera.GrabOne(_DEFAULT_TIMEOUT).Array
             self._instantImage=cv2.resize(self._instantImage,self.image_size) if self.image_size!=(DEFAULT_IMAGE_WIDTH,DEFAULT_IMAGE_HEIGHT) else self._instantImage
             self._instantImage=cv2.rotate(self._instantImage,self.image_orientation) if self.image_orientation!=DEAFULT_IMAGE_ORIENTATION else self._instantImage
