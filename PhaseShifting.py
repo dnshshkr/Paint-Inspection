@@ -10,19 +10,19 @@ import basler
 firstTimeRun=0
 if firstTimeRun:
     basler.Basler.parameterizeCamera()
-
 screen_id=2
 specified='black'
 imageX_name='imageX_PhaseShifting_'+specified
 imageY_name='imageY_PhaseShifting_'+specified
 imageXY_name='imageXY_PhaseShifting_'+specified
 save_path='image processing/'+specified
-def imshowAndCapture(cap,img_pattern,delay=400):
+def imshowAndCapture(cap,img_pattern,delay=100):
     window_name='projector'
     cv.imshow(window_name, img_pattern)
     cv.waitKey(delay)
     img_gray=cap.retrieve()
     cv.imshow("img_gray",img_gray)
+    #cv.waitKey(delay)
     return img_gray
 def main():
     try:
@@ -90,7 +90,7 @@ def main():
     del imgX,imgY
     
     img_correspondence=np.clip(img_correspondence*255.0,0,255).astype(np.uint8)
-    img_correspondence=cv.cvtColor(img_correspondence,cv.COLOR_BGR2GRAY)
+    img_correspondence=cv.cvtColor(img_correspondence,cv.COLOR_RGB2GRAY)
     plt.imsave(imageXY_name+'.png',img_correspondence,cmap='gray')
     cv.destroyAllWindows()
 
