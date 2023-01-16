@@ -3,8 +3,8 @@ import numpy as np
 import os
 use_camera=1
 use_image=0
-folder_name='sagging'
-part_name=' - sagging'
+folder_name='black'
+part_name='_black'
 save_path='image processing/'+folder_name+'/'
 for file_name in os.listdir(save_path):
     if os.path.isfile(save_path+file_name):
@@ -44,9 +44,9 @@ def main():
     stitch_image_array=[]
     result,stitch=process[2](result,4,0)
     stitch_image_array.append(stitch)
-    result,stitch=process[1](result,5,0)
+    result,stitch=process[1](result,5,1)
     stitch_image_array.append(stitch)
-    result,stitch=process[3](result,6,0)
+    result,stitch=process[3](result,6,1)
     stitch_image_array.append(stitch)
     result,stitch=process[4](result,7,0)
     stitch_image_array.append(stitch)
@@ -60,8 +60,8 @@ def main():
     #find contours
     contours=cv.findContours(result.copy(),cv.RETR_TREE,cv.CHAIN_APPROX_SIMPLE)[0]
     contourImage=np.zeros((len(final_result),len(final_result[0]),3),np.uint8)
-    count_all=1
-    perimeter_min=15.0
+    count_all=0
+    perimeter_min=8.0
     perimeter_max=200.0
     prevx,prevy=-1,-1
     for i,contour in enumerate(contours):

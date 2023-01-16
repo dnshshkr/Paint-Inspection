@@ -12,11 +12,11 @@ if firstTimeRun:
     basler.Basler.parameterizeCamera()
 
 screen_id=2
-specified='_black'
-imageX_name='imageX_PhaseShifting'+specified
-imageY_name='imageY_PhaseShifting'+specified
-imageXY_name='imageXY_PhaseShifting'+specified
-save_path='image processing/raw'+specified
+specified='black'
+imageX_name='imageX_PhaseShifting_'+specified
+imageY_name='imageY_PhaseShifting_'+specified
+imageXY_name='imageXY_PhaseShifting_'+specified
+save_path='image processing/'+specified
 def imshowAndCapture(cap,img_pattern,delay=400):
     window_name='projector'
     cv.imshow(window_name, img_pattern)
@@ -65,7 +65,7 @@ def main():
     cv.moveWindow("img_gray",0,0)
     # Capture
     imlist_capturesX=[imshowAndCapture(cap,img) for img in imlist_patternX]
-    cv.imwrite('rawX'+specified+'.png',imlist_capturesX[np.random.randint(len(imlist_capturesX))])
+    cv.imwrite(save_path+'/rawX_'+specified+'.png',imlist_capturesX[np.random.randint(len(imlist_capturesX))])
 
     # DecodeX
     imgX=sl.PhaseShifting().decodeAmplitude(imlist_capturesX)
@@ -73,7 +73,7 @@ def main():
 
     # Capture
     imlist_capturesY=[imshowAndCapture(cap,img) for img in imlist_patternY]
-    cv.imwrite('rawY'+specified+'.png',imlist_capturesX[np.random.randint(len(imlist_capturesX))])
+    cv.imwrite(save_path+'/rawY_'+specified+'.png',imlist_capturesY[np.random.randint(len(imlist_capturesY))])
 
     # DecodeY
     imgY = sl.PhaseShifting().decodeAmplitude(imlist_capturesY)
