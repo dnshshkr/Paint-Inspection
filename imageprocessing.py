@@ -10,16 +10,15 @@ for file_name in os.listdir(save_path):
     if os.path.isfile(save_path+file_name):
         os.remove(save_path+file_name)
 last_name='PhaseShifting'+part_name
-# imageX_name='imageX_'+last_name
-# imageY_name='imageY_'+last_name
+imageX_name='imageX_'+last_name
+imageY_name='imageY_'+last_name
 imageXY_name='imageXY_'+last_name
-imageX_name=imageY_name=imageXY_name
 caption_size=1
 imgX=cv.imread(imageX_name+'.png',cv.IMREAD_COLOR)
 imgY=cv.imread(imageY_name+'.png',cv.IMREAD_COLOR)
 imgXY=cv.imread(imageXY_name+'.png',cv.IMREAD_COLOR)
 
-final_result=imgXY.copy()
+final_result=imgY.copy()
 result=cv.cvtColor(final_result,cv.COLOR_BGR2GRAY)
 
 cv.putText(imgX,'imageX',(5,30),cv.FONT_HERSHEY_SIMPLEX,caption_size,(0,0,255),2)
@@ -48,7 +47,7 @@ def main():
     stitch_image_array.append(stitch)
     result,stitch=process[3](result,6,1)
     stitch_image_array.append(stitch)
-    result,stitch=process[4](result,7,0)
+    result,stitch=process[4](result,7,1)
     stitch_image_array.append(stitch)
     result,stitch=process[5](result,8,0)
     stitch_image_array.append(stitch)
@@ -118,16 +117,16 @@ def sharpen_image(result,step,enable):#image sharpening
     return result,result_filter2D
 
 def erode_image(result,step,enable):#erode
-    result=cv.erode(result,np.ones((6,6),np.uint8)) if enable else result
-    #result=cv.erode(result,None,iterations=2) if erode else result
+    #result=cv.erode(result,np.ones((6,6),np.uint8)) if enable else result
+    result=cv.erode(result,None,iterations=2) if enable else result
     result_erode=cv.cvtColor(result,cv.COLOR_GRAY2BGR)
     cv.putText(result_erode,'erode enabled' if enable else 'erode disabled',(5,30),cv.FONT_HERSHEY_SIMPLEX,caption_size,(0,0,255),2)
     cv.imwrite(save_path+str(step)+'. erode_'+str(enable)+'.png',result_erode)
     return result,result_erode
 
 def dilate_image(result,step,enable):#dilate
-    result=cv.dilate(result,np.ones((5,5),np.uint8)) if enable else result
-    #result=cv.dilate(result,None,iterations=1) if dilate else result
+    #result=cv.dilate(result,np.ones((5,5),np.uint8)) if enable else result
+    result=cv.dilate(result,None,iterations=1) if enable else result
     result_dilate=cv.cvtColor(result,cv.COLOR_GRAY2BGR)
     cv.putText(result_dilate,'dilate enabled' if enable else 'dilate disabled',(5,30),cv.FONT_HERSHEY_SIMPLEX,caption_size,(0,0,255),2)
     cv.imwrite(save_path+str(step)+'. dilate_'+str(enable)+'.png',result_dilate)
