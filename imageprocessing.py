@@ -3,15 +3,17 @@ import numpy as np
 import os
 use_camera=1
 use_image=0
-part_color='black'
-save_path='image processing/'+part_color+'/'
+folder_name='sagging'
+part_name=' - sagging'
+save_path='image processing/'+folder_name+'/'
 for file_name in os.listdir(save_path):
     if os.path.isfile(save_path+file_name):
         os.remove(save_path+file_name)
-last_name='PhaseShifting_'+part_color
-imageX_name='imageX_'+last_name
-imageY_name='imageY_'+last_name
+last_name='PhaseShifting'+part_name
+# imageX_name='imageX_'+last_name
+# imageY_name='imageY_'+last_name
 imageXY_name='imageXY_'+last_name
+imageX_name=imageY_name=imageXY_name
 caption_size=1
 imgX=cv.imread(imageX_name+'.png',cv.IMREAD_COLOR)
 imgY=cv.imread(imageY_name+'.png',cv.IMREAD_COLOR)
@@ -44,7 +46,7 @@ def main():
     stitch_image_array.append(stitch)
     result,stitch=process[1](result,5,0)
     stitch_image_array.append(stitch)
-    result,stitch=process[3](result,6,1)
+    result,stitch=process[3](result,6,0)
     stitch_image_array.append(stitch)
     result,stitch=process[4](result,7,0)
     stitch_image_array.append(stitch)
@@ -58,7 +60,7 @@ def main():
     #find contours
     contours=cv.findContours(result.copy(),cv.RETR_TREE,cv.CHAIN_APPROX_SIMPLE)[0]
     contourImage=np.zeros((len(final_result),len(final_result[0]),3),np.uint8)
-    count_all=0
+    count_all=1
     perimeter_min=15.0
     perimeter_max=200.0
     prevx,prevy=-1,-1
