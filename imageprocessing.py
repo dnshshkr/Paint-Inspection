@@ -41,17 +41,17 @@ def main():
              7:detect_edge}
     
     stitch_image_array=[]
-    result,stitch=process[2](result,4,0)
+    result,stitch=process[1](result,4,0)
     stitch_image_array.append(stitch)
-    result,stitch=process[1](result,5,1)
+    result,stitch=process[3](result,5,1)
     stitch_image_array.append(stitch)
-    result,stitch=process[3](result,6,1)
+    result,stitch=process[4](result,6,1)
     stitch_image_array.append(stitch)
-    result,stitch=process[4](result,7,1)
+    result,stitch=process[2](result,7,1)
     stitch_image_array.append(stitch)
     result,stitch=process[5](result,8,0)
     stitch_image_array.append(stitch)
-    result,stitch=process[6](result,9,1)
+    result,stitch=process[6](result,9,0)
     stitch_image_array.append(stitch)
     result,stitch=process[7](result,10,0)
     stitch_image_array.append(stitch)

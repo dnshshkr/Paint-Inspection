@@ -16,18 +16,21 @@ imageX_name='imageX_PhaseShifting_'+specified
 imageY_name='imageY_PhaseShifting_'+specified
 imageXY_name='imageXY_PhaseShifting_'+specified
 save_path='image processing/'+specified
-def imshowAndCapture(cap,img_pattern,delay=100):
-    window_name='projector'
-    cv.imshow(window_name, img_pattern)
+def imshowAndCapture(cap,img_pattern,winf,winc,delay=100):
+    cv.imshow(winf,img_pattern)
     cv.waitKey(delay)
     img_gray=cap.retrieve()
-    cv.imshow("img_gray",img_gray)
-    #cv.waitKey(delay)
+    cv.imshow(winc,img_gray)
+    if cv.waitKey(1)==27 or cv.getWindowProperty(winf,cv.WND_PROP_VISIBLE)<1:
+        cap.end()
+        cv.destroyAllWindows()
+        exit()
     return img_gray
 def main():
     try:
         screen=screeninfo.get_monitors()[screen_id] #get the size of the screen
-        width,height=screen.width, screen.height
+        width,height=screen.width,screen.height
+        aspect_ratio:float=height/width
     except:
         print('Monitor not detected')
         exit()
@@ -36,10 +39,10 @@ def main():
     except:
         cap=cv.VideoCapture(1) #webcam
         cap.open
-    num:int=7
-    F:int=10 #35
+    num:int=15
+    F:int=15
     F1=F
-    F2=int(float(F)*9.0/16.0)
+    F2=int(float(F)*aspect_ratio)
 
     #generate x pattern
     phaseshiftingX=sl.PhaseShifting(num,F1)
@@ -55,16 +58,18 @@ def main():
     #imlist_posi_y_pat.extend(imlist_nega_y_pat)
 
     #pattern projection screen
-    window_name='projector'
-    cv.namedWindow(window_name,cv.WND_PROP_FULLSCREEN)
-    cv.moveWindow(window_name,screen.x-1,screen.y-1)
-    cv.setWindowProperty(window_name,cv.WND_PROP_FULLSCREEN,cv.WINDOW_FULLSCREEN)
+    fringe_window='projector'
+    cv.namedWindow(fringe_window,cv.WND_PROP_FULLSCREEN)
+    cv.moveWindow(fringe_window,screen.x-1,screen.y-1)
+    cv.setWindowProperty(fringe_window,cv.WND_PROP_FULLSCREEN,cv.WINDOW_FULLSCREEN)
 
-    cv.namedWindow("img_gray",cv.WND_PROP_FULLSCREEN)
-    cv.setWindowProperty("img_gray",cv.WND_PROP_FULLSCREEN,cv.WINDOW_FULLSCREEN)
-    cv.moveWindow("img_gray",0,0)
+    capture_window='capture'
+    cv.namedWindow(capture_window,cv.WND_PROP_FULLSCREEN)
+    cv.setWindowProperty(capture_window,cv.WND_PROP_FULLSCREEN,cv.WINDOW_FULLSCREEN)
+    cv.moveWindow(capture_window,0,0)
+    
     # Capture
-    imlist_capturesX=[imshowAndCapture(cap,img) for img in imlist_patternX]
+    imlist_capturesX=[imshowAndCapture(cap,img,fringe_window,capture_window) for img in imlist_patternX]
     cv.imwrite(save_path+'/rawX_'+specified+'.png',imlist_capturesX[np.random.randint(len(imlist_capturesX))])
 
     # DecodeX
@@ -72,11 +77,11 @@ def main():
     plt.imsave(imageX_name+'.png',imgX,cmap='gray')
 
     # Capture
-    imlist_capturesY=[imshowAndCapture(cap,img) for img in imlist_patternY]
+    imlist_capturesY=[imshowAndCapture(cap,img,fringe_window,capture_window) for img in imlist_patternY]
     cv.imwrite(save_path+'/rawY_'+specified+'.png',imlist_capturesY[np.random.randint(len(imlist_capturesY))])
 
     # DecodeY
-    imgY = sl.PhaseShifting().decodeAmplitude(imlist_capturesY)
+    imgY=sl.PhaseShifting().decodeAmplitude(imlist_capturesY)
     plt.imsave(imageY_name+'.png',imgY,cmap='gray')
 
     # Close camera
@@ -86,7 +91,11 @@ def main():
     del num,F,F1,F2,imlist,imlist_patternX,imlist_capturesX,imlist_patternY,imlist_capturesY
 
     # Visualize decode result
-    img_correspondence=cv.merge([0.0*np.zeros_like(imgX),imgX/width,imgY/height])
+    width,height=960,102
+    #img_correspondence=cv.addWeighted(imgX,0.5,imgY,0.5,0)
+    img_correspondence=cv.merge([0*np.zeros_like(imgX),imgX/width,imgY/height])
+    #img_correspondence=cv.merge([img_correspondence,imgX/width,imgY/height])
+    
     del imgX,imgY
     
     img_correspondence=np.clip(img_correspondence*255.0,0,255).astype(np.uint8)
