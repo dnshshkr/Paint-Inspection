@@ -3,13 +3,13 @@ import numpy as np
 import os
 use_camera=1
 use_image=0
-folder_name='red'
+folder_name='general black'
 part_name='_'+folder_name
 save_path='image processing/'+folder_name+'/'
 
-imageX_name='image processing/red/1. imageX'
-imageY_name='image processing/red/2. imageY'
-imageXY_name='image processing/red/3. imageXY'
+imageX_name='imageX_PhaseShifting_general_black'
+imageY_name='imageY_PhaseShifting_general_black'
+imageXY_name='imageXY_PhaseShifting_general_black'
 caption_size=1
 
 #load image

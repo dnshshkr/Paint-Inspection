@@ -37,7 +37,7 @@ class Basler:
             self.isLive=self._camera.IsGrabbing()
     def retrieve(self):
         if self.mode==MODE_LIVE:
-            self._grabResult=self._camera.RetrieveResult(4000,pylon.TimeoutHandling_ThrowException)
+            self._grabResult=self._camera.RetrieveResult(_DEFAULT_TIMEOUT,pylon.TimeoutHandling_ThrowException)
             self.grabSucceed=self._grabResult.GrabSucceeded()
             self._liveFeed=self._converter.Convert(self._grabResult)
             self._liveFeed=self._liveFeed.GetArray()

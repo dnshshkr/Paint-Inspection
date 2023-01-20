@@ -9,10 +9,11 @@ from pypylon import pylon
 from matplotlib import pyplot as plt
 import basler
 
-screen_id=2
-imageX_name='imageX_Gray'
-imageY_name='imageY_Gray'
-imageXY_name='imageXY_Gray'
+screen_id=1
+part_name='string_white'
+imageX_name='imageX_Gray'+'_'+part_name
+imageY_name='imageY_Gray'+'_'+part_name
+imageXY_name='imageXY_Gray'+'_'+part_name
 
 # get the size of the screen
 try:
@@ -32,7 +33,7 @@ def imshowAndCapture(cap, img_pattern, delay=350):
     # img_frame = cap.GrabOne(5000)
     # img_gray = img_frame.Array
 
-    img_gray=cap.capture()
+    img_gray=cap.retrieve()
     #img_gray = img_gray[y1:y2, x1:x2]
     # ret, img_gray = cv2.threshold(img_gray, 30, 255, cv2.THRESH_TOZERO)
     cv2.namedWindow("img_gray", cv2.WND_PROP_FULLSCREEN)
