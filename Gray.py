@@ -9,8 +9,8 @@ from pypylon import pylon
 from matplotlib import pyplot as plt
 import basler
 
-screen_id=1
-part_name='string_white'
+screen_id=2
+part_name='dust_silver'
 imageX_name='imageX_Gray'+'_'+part_name
 imageY_name='imageY_Gray'+'_'+part_name
 imageXY_name='imageXY_Gray'+'_'+part_name
@@ -24,7 +24,7 @@ except:
     exit()
 
 window_name='projector'
-def imshowAndCapture(cap, img_pattern, delay=350):
+def imshowAndCapture(cap, img_pattern, delay=100):
     
     cv2.imshow(window_name, img_pattern)
     cv2.waitKey(delay)

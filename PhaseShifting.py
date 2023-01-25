@@ -12,7 +12,7 @@ firstTimeRun=0
 if firstTimeRun:
     basler.Basler.parameterizeCamera()
 screen_id=3
-def imshowAndCapture(cap,img_pattern,winf,winc,delay=250):
+def imshowAndCapture(cap,img_pattern,winf,winc,delay=100):
     cv.imshow(winf,img_pattern)
     cv.waitKey(delay)
     img_gray=cap.retrieve()
@@ -35,8 +35,8 @@ def main():
     except:
         cap=cv.VideoCapture(1) #webcam
         cap.open
-    num:int=5
-    F:float=35
+    num:int=7
+    F:float=35 #65 for silver 23 for white 35 others
     F1=F
     F2=float(F)*aspect_ratio
 
