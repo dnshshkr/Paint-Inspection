@@ -9,8 +9,8 @@ from pypylon import pylon
 from matplotlib import pyplot as plt
 import basler
 
-screen_id=2
-part_name='dust_silver'
+screen_id=1
+part_name='dust_red'
 imageX_name='imageX_Gray'+'_'+part_name
 imageY_name='imageY_Gray'+'_'+part_name
 imageXY_name='imageXY_Gray'+'_'+part_name
@@ -93,10 +93,12 @@ def main():
     plt.imsave(imageX_name+'.png',img_index_x,cmap='gray')
     plt.imsave(imageY_name+'.png',img_index_y,cmap='gray')
     plt.imsave(imageXY_name+'.png',img_correspondence,cmap='gray')
-
     
     cv2.destroyAllWindows()
     cap.end()
+    img=cv2.imread('imageXY_Gray_dust_red.png',cv2.IMREAD_GRAYSCALE)
+    cv2.imshow('gray',img)
+    cv2.waitKey(0)
 
 if __name__=="__main__":
     main()

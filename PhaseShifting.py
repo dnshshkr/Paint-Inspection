@@ -11,7 +11,7 @@ import time
 firstTimeRun=0
 if firstTimeRun:
     basler.Basler.parameterizeCamera()
-screen_id=3
+screen_id=2
 def imshowAndCapture(cap,img_pattern,winf,winc,delay=100):
     cv.imshow(winf,img_pattern)
     cv.waitKey(delay)
@@ -93,7 +93,8 @@ def main():
     img_correspondence=cv.cvtColor(img_correspondence,cv.COLOR_BGR2GRAY)
     
     cv.destroyAllWindows()
-    specified=input('enter specific name for the part: ')
+    #specified=input('enter specific name for the part: ')
+    specified='demo_red'
     imageX_name='imageX_PhaseShifting_'+specified
     imageY_name='imageY_PhaseShifting_'+specified
     imageXY_name='imageXY_PhaseShifting_'+specified
@@ -101,5 +102,8 @@ def main():
     plt.imsave(imageX_name+'.png',imgX,cmap='gray')
     plt.imsave(imageY_name+'.png',imgY,cmap='gray')
     plt.imsave(imageXY_name+'.png',img_correspondence,cmap='gray')
+    img_correspondence=cv.imread('imageXY_PhaseShifting_demo_red.png',cv.IMREAD_GRAYSCALE)
+    cv.imshow('demo',img_correspondence)
+    cv.waitKey(0)
 if __name__=="__main__":
     main()

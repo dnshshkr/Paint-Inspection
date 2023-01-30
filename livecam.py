@@ -2,7 +2,7 @@ import basler,cv2,keyboard,pathlib
 DEFAULT_FILENAME='raw_capture'
 WINDOW_NAME='live cam'
 index=0
-show_fringe=1
+show_fringe=0
 firstTimeRun=1
 if firstTimeRun:
     basler.Basler.parameterizeCamera()
@@ -11,7 +11,7 @@ if show_fringe:
     import screeninfo
     img=sl.PhaseShifting()
     imgX=img.generate((1920,1080))
-    screen=screeninfo.get_monitors()[2]
+    screen=screeninfo.get_monitors()[1]
 cam=basler.Basler(mode=basler.MODE_LIVE,image_size=(1920,1080),rotate_image=180)
 cv2.namedWindow(WINDOW_NAME,cv2.WINDOW_GUI_NORMAL)
 cv2.moveWindow(WINDOW_NAME,0,0)
