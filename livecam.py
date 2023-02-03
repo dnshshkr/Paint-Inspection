@@ -2,7 +2,7 @@ import basler,cv2,keyboard,pathlib
 DEFAULT_FILENAME='raw_capture'
 WINDOW_NAME='live cam'
 index=0
-show_fringe=0
+show_fringe=1
 firstTimeRun=1
 if firstTimeRun:
     basler.Basler.parameterizeCamera()
