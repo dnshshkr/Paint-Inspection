@@ -93,8 +93,8 @@ def main():
     img_correspondence=cv.cvtColor(img_correspondence,cv.COLOR_BGR2GRAY)
     
     cv.destroyAllWindows()
-    #specified=input('enter specific name for the part: ')
-    specified='demo_red'
+    specified=input('enter specific name for the part: ')
+    #specified='demo_red'
     imageX_name='imageX_PhaseShifting_'+specified
     imageY_name='imageY_PhaseShifting_'+specified
     imageXY_name='imageXY_PhaseShifting_'+specified
