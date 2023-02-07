@@ -2,29 +2,37 @@ import basler,cv2,keyboard,pathlib
 DEFAULT_FILENAME='raw_capture'
 WINDOW_NAME='live cam'
 index=0
-show_fringe=1
+show_fringe=0
+show_white=1
 firstTimeRun=1
 if firstTimeRun:
+    import screeninfo
     basler.Basler.parameterizeCamera()
+if show_fringe or show_white:
+    screen=screeninfo.get_monitors()[0]
 if show_fringe:
     import structuredlight as sl
-    import screeninfo
     img=sl.PhaseShifting()
     imgX=img.generate((1920,1080))
-    screen=screeninfo.get_monitors()[1]
 cam=basler.Basler(mode=basler.MODE_LIVE,image_size=(1920,1080),rotate_image=180)
 cv2.namedWindow(WINDOW_NAME,cv2.WINDOW_GUI_NORMAL)
 cv2.moveWindow(WINDOW_NAME,0,0)
 i=0
 if show_fringe:
-    cv2.namedWindow('stripe',cv2.WINDOW_FULLSCREEN)
-    cv2.setWindowProperty('stripe',cv2.WND_PROP_FULLSCREEN,cv2.WINDOW_FULLSCREEN)
-    cv2.moveWindow('stripe',screen.x-1,screen.y-1)
+    cv2.namedWindow('fringe',cv2.WINDOW_FULLSCREEN)
+    cv2.setWindowProperty('fringe',cv2.WND_PROP_FULLSCREEN,cv2.WINDOW_FULLSCREEN)
+    cv2.moveWindow('fringe',screen.x,screen.y)
+elif show_white:
+    import numpy as np
+    cv2.namedWindow('white',cv2.WINDOW_FULLSCREEN)
+    cv2.setWindowProperty('white',cv2.WND_PROP_FULLSCREEN,cv2.WINDOW_FULLSCREEN)
+    cv2.moveWindow('white',screen.x,screen.y)
+    cv2.imshow('white',255*np.ones((1080,1920),dtype=np.uint8))
 while cam.isLive:
     img=cam.retrieve()
     cv2.imshow(WINDOW_NAME,img)
     if show_fringe:
-        cv2.imshow('stripe',imgX[i])
+        cv2.imshow('fringe',imgX[i])
         i+=1
         if i>=len(imgX):
             i=0

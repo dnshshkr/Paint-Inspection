@@ -7,11 +7,11 @@ import structuredlight as sl
 import screeninfo
 from matplotlib import pyplot as plt
 import basler
-import time
+import os.path
 firstTimeRun=0
 if firstTimeRun:
     basler.Basler.parameterizeCamera()
-screen_id=2
+screen_id=1
 def imshowAndCapture(cap,img_pattern,winf,winc,delay=100):
     cv.imshow(winf,img_pattern)
     cv.waitKey(delay)
@@ -93,17 +93,27 @@ def main():
     img_correspondence=cv.cvtColor(img_correspondence,cv.COLOR_BGR2GRAY)
     
     cv.destroyAllWindows()
+    folder='captures/'
     specified=input('enter specific name for the part: ')
     #specified='demo_red'
-    imageX_name='imageX_PhaseShifting_'+specified
-    imageY_name='imageY_PhaseShifting_'+specified
-    imageXY_name='imageXY_PhaseShifting_'+specified
-    save_path='image processing/'+specified
-    plt.imsave(imageX_name+'.png',imgX,cmap='gray')
-    plt.imsave(imageY_name+'.png',imgY,cmap='gray')
-    plt.imsave(imageXY_name+'.png',img_correspondence,cmap='gray')
-    img_correspondence=cv.imread('imageXY_PhaseShifting_demo_red.png',cv.IMREAD_GRAYSCALE)
+    imageX_name='imageX_PhaseShifting_'
+    imageY_name='imageY_PhaseShifting_'
+    imageXY_name='imageXY_PhaseShifting_'
+    save_pathX=folder+imageX_name+specified
+    save_pathY=folder+imageY_name+specified
+    save_pathXY=folder+imageXY_name+specified
+    while os.path.exists(save_pathX+'.png') or os.path.exists(save_pathY+'.png') or os.path.exists(save_pathXY+'.png'):
+        decision=input('the file already exists, do you want to overwrite it? (y/n): ')
+        if decision=='y':
+            break
+        else:
+            specified=input('please enter another name: ')
+    plt.imsave(save_pathX+'.png',imgX,cmap='gray')
+    plt.imsave(save_pathY+'.png',imgY,cmap='gray')
+    plt.imsave(save_pathXY+'.png',img_correspondence,cmap='gray')
+    img_correspondence=cv.imread(save_pathXY+'.png',cv.IMREAD_GRAYSCALE)
     cv.imshow('demo',img_correspondence)
+    cv.setWindowProperty('demo',cv.WND_PROP_AUTOSIZE,cv.WINDOW_NORMAL)
     cv.waitKey(0)
 if __name__=="__main__":
     main()
