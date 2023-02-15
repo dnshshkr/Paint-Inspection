@@ -26,8 +26,6 @@ class Basler:
             self._camera.Open()
         except:
             print('no basler camera is found')
-            del self
-        print('camera started')
         self.mode=mode
         if mode is MODE_LIVE:
             self._camera.StartGrabbing(pylon.GrabStrategy_LatestImageOnly)
