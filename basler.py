@@ -26,10 +26,8 @@ class Basler:
             self._camera.Open()
         except:
             print('no basler camera is found')
-            del self
-        print('camera started')
         self.mode=mode
-        if mode is MODE_LIVE:
+        if mode is MODE_LIVE and _cam_init:
             self._camera.StartGrabbing(pylon.GrabStrategy_LatestImageOnly)
             self._converter=pylon.ImageFormatConverter()
             self._converter.OutputPixelFormat=pylon.PixelType_BGR8packed
