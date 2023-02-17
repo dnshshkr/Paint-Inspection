@@ -3,12 +3,13 @@ DEFAULT_FILENAME='raw_capture'
 WINDOW_NAME='live cam'
 index=0
 show_fringe=0
-show_white=1
-firstTimeRun=1
+show_white=0
+firstTimeRun=0
 if firstTimeRun:
     import screeninfo
     basler.Basler.parameterizeCamera()
 if show_fringe or show_white:
+    import screeninfo
     screen=screeninfo.get_monitors()[0]
 if show_fringe:
     import structuredlight as sl

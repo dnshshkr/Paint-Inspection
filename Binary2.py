@@ -35,7 +35,7 @@ def main():
     except:
         cap=cv.VideoCapture(1) #webcam
         cap.open
-    num:int=6
+    num:int=3
     F:float=65 #65 for silver 23 for white 35 others
     F1=F
     F2=float(F)*aspect_ratio
@@ -46,16 +46,16 @@ def main():
         F2=0.5
     if is_white:
         F1=35
-        F2=0.5
+        F2=1
     #generate x pattern
-    phaseshiftingX=sl.PhaseShifting(num,F1)
+    phaseshiftingX=sl.Binary()
     imlist_patternX=phaseshiftingX.generate((width,height))
     #imlist_nega_x_pat=[cv.rotate(img,cv.ROTATE_180) for img in imlist_posi_x_pat]
     #imlist_posi_x_pat.extend(imlist_nega_x_pat)
 
     #generate y pattern
-    phaseshiftingY=sl.PhaseShifting(num,F2)
-    imlist_patternY=sl.transpose(phaseshiftingY.generate((width, height)))
+    #phaseshiftingY=sl.PhaseShifting(num,F2)
+    #imlist_patternY=sl.transpose(phaseshiftingY.generate((width, height)))
     #imlist_nega_y_pat=[cv.rotate(img,cv.ROTATE_180) for img in imlist_posi_y_pat]
     #imlist_posi_y_pat.extend(imlist_nega_y_pat)
 
@@ -75,29 +75,31 @@ def main():
     #cv.imwrite(save_path+'/rawX_'+specified+'.png',imlist_capturesX[np.random.randint(len(imlist_capturesX))])
 
     # DecodeX
-    imgX=sl.PhaseShifting().decodeAmplitude(imlist_capturesX)
+    #imgX=sl.PhaseShifting().decodeAmplitude(imlist_capturesX)
+    imgX=phaseshiftingX.decode(imlist_capturesX,thresh=10)
 
     # Capture
-    imlist_capturesY=[imshowAndCapture(cap,img,fringe_window,capture_window) for img in imlist_patternY]
+    #imlist_capturesY=[imshowAndCapture(cap,img,fringe_window,capture_window) for img in imlist_patternY]
     #cv.imwrite(save_path+'/rawY_'+specified+'.png',imlist_capturesY[np.random.randint(len(imlist_capturesY))])
 
     # DecodeY
-    imgY=sl.PhaseShifting().decodeAmplitude(imlist_capturesY)
+    #imgY=sl.PhaseShifting().decodeAmplitude(imlist_capturesY)
 
     # Close camera
     cap.end()
 
     # Delete unused variables
-    del num,F,F1,F2,imlist_patternX,imlist_capturesX,imlist_patternY,imlist_capturesY
+    #del num,F,F1,F2,imlist_patternX,imlist_capturesX,imlist_patternY,imlist_capturesY
 
     # Visualize decode result
-    width,height=1000,100#1000,100#960,102
-    img_correspondence=cv.addWeighted(imgX,0.5,imgY,0.5,0)
-    img_correspondence=cv.merge([0.0*np.zeros_like(imgX),imgX/width,imgY/height])
+    img_correspondence=imgX
+    #width,height=1000,100#1000,100#960,102
+    #img_correspondence=cv.addWeighted(imgX,0.5,imgY,0.5,0)
+    #img_correspondence=cv.merge([0.0*np.zeros_like(imgX),imgX/width,imgY/height])
     #img_correspondence=cv.merge([img_correspondence,imgX/width,imgY/height])
     
-    img_correspondence=np.clip(img_correspondence*255.0,0,255).astype(np.uint8)
-    img_correspondence=cv.cvtColor(img_correspondence,cv.COLOR_BGR2GRAY)
+    #img_correspondence=np.clip(img_correspondence*255.0,0,255).astype(np.uint8)
+    #img_correspondence=cv.cvtColor(img_correspondence,cv.COLOR_BGR2GRAY)
     
     cv.destroyAllWindows()
     folder='captures/'
@@ -116,7 +118,7 @@ def main():
         else:
             specified=input('please enter another name: ')
     plt.imsave(save_pathX+'.png',imgX,cmap='gray')
-    plt.imsave(save_pathY+'.png',imgY,cmap='gray')
+    #plt.imsave(save_pathY+'.png',imgY,cmap='gray')
     plt.imsave(save_pathXY+'.png',img_correspondence,cmap='gray')
     img_correspondence=cv.imread(save_pathXY+'.png',cv.IMREAD_GRAYSCALE)
     cv.imshow('demo',img_correspondence)
