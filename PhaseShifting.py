@@ -8,7 +8,7 @@ import screeninfo
 from matplotlib import pyplot as plt
 import basler
 import os.path
-firstTimeRun=0
+firstTimeRun=1
 if firstTimeRun:
     basler.Basler.parameterizeCamera()
 screen_id=1
