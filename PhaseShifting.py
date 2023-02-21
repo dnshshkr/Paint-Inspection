@@ -35,11 +35,11 @@ def main():
     except:
         cap=cv.VideoCapture(1) #webcam
         cap.open
-    num:int=6
-    F:float=65 #65 for silver 23 for white 35 others
+    num:int=3
+    F:float=10 #65 for silver 23 for white 35 others
     F1=F
     F2=float(F)*aspect_ratio
-    is_white=1
+    is_white=0
     is_silver=0
     if is_silver:
         F1=23
@@ -88,7 +88,7 @@ def main():
     cap.end()
 
     # Delete unused variables
-    del num,F,F1,F2,imlist_patternX,imlist_capturesX,imlist_patternY,imlist_capturesY
+    del imlist_patternX,imlist_capturesX,imlist_patternY,imlist_capturesY
 
     # Visualize decode result
     width,height=1000,100#1000,100#960,102
@@ -100,15 +100,15 @@ def main():
     img_correspondence=cv.cvtColor(img_correspondence,cv.COLOR_BGR2GRAY)
     
     cv.destroyAllWindows()
-    folder='captures/'
+    folder='captures/report/'
     specified=input('enter specific name for the part: ')
     #specified='demo_red'
     imageX_name='imageX_PhaseShifting_'
     imageY_name='imageY_PhaseShifting_'
     imageXY_name='imageXY_PhaseShifting_'
-    save_pathX=folder+imageX_name+specified
-    save_pathY=folder+imageY_name+specified
-    save_pathXY=folder+imageXY_name+specified
+    save_pathX=folder+imageX_name+specified+'_F1-'+str(F1)+'_N'+str(num)
+    save_pathY=folder+imageY_name+specified+'_F2-'+str(F2)+'_N'+str(num)
+    save_pathXY=folder+imageXY_name+specified+'_F1-'+str(F1)+'_F2-'+str(F2)+'_N'+str(num)
     while os.path.exists(save_pathX+'.png') or os.path.exists(save_pathY+'.png') or os.path.exists(save_pathXY+'.png'):
         decision=input('the file already exists, do you want to overwrite it? (y/n): ')
         if decision=='y':

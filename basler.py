@@ -12,7 +12,7 @@ class Basler:
     def __init__(self,mode=MODE_CAPTURE,image_size=(DEFAULT_IMAGE_WIDTH,DEFAULT_IMAGE_HEIGHT),rotate_image=180):
         self.image_size=image_size
         if rotate_image==0:
-            pass
+            self.image_orientation=DEAFULT_IMAGE_ORIENTATION
         elif rotate_image==90:
             self.image_orientation=cv2.ROTATE_90_CLOCKWISE
         elif rotate_image==180:
