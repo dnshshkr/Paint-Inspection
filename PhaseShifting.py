@@ -13,7 +13,7 @@ firstTimeRun=0
 if firstTimeRun:
     basler.Basler.parameterizeCamera()
 screen_id=1
-def imshowAndCapture(cap,img_pattern,winf,winc,delay=100):
+def imshowAndCapture(cap,img_pattern,winf,winc,delay=400):
     cv.imshow(winf,img_pattern)
     cv.waitKey(delay)
     img_gray=cap.retrieve()
@@ -37,7 +37,7 @@ def main():
         cap=cv.VideoCapture(1) #webcam
         cap.open
     num:int=3
-    F:float=60 #65 for silver 23 for white 35 others
+    F:float=65 #65 for silver 23 for white 35 others
     F1=F
     F2=float(F)*aspect_ratio
     is_white=0
@@ -99,7 +99,7 @@ def main():
 
     # Visualize decode result
     width,height=1920,1080#1000,100#960,102
-    img_correspondence=cv.addWeighted(imgX,0.5,imgY,0.5,0)
+    #img_correspondence=cv.addWeighted(imgX,0.5,imgY,0.5,0)
     img_correspondence=cv.merge([0.0*np.zeros_like(imgX),imgX/width,imgY/height])
     #img_correspondence=cv.merge([img_correspondence,imgX/width,imgY/height])
     

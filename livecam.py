@@ -4,7 +4,7 @@ WINDOW_NAME='live cam'
 index=0
 show_fringe=0
 show_white=0
-firstTimeRun=1
+firstTimeRun=0
 if firstTimeRun:
     import screeninfo
     basler.Basler.parameterizeCamera()
@@ -37,6 +37,7 @@ while cam.isLive:
         i+=1
         if i>=len(imgX):
             i=0
+        cv2.waitKey(100)
     if cv2.waitKey(1)==27 or cv2.getWindowProperty(WINDOW_NAME,cv2.WND_PROP_VISIBLE)<1:
         cam.end()
         cv2.destroyAllWindows()
