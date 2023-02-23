@@ -8,11 +8,12 @@ import screeninfo
 from matplotlib import pyplot as plt
 import basler
 import os.path
+import time
 firstTimeRun=0
 if firstTimeRun:
     basler.Basler.parameterizeCamera()
 screen_id=1
-def imshowAndCapture(cap,img_pattern,winf,winc,delay=350):
+def imshowAndCapture(cap,img_pattern,winf,winc,delay=100):
     cv.imshow(winf,img_pattern)
     cv.waitKey(delay)
     img_gray=cap.retrieve()
@@ -36,26 +37,25 @@ def main():
         cap=cv.VideoCapture(1) #webcam
         cap.open
     num:int=3
-    F:float=65 #65 for silver 23 for white 35 others
+    F:float=60 #65 for silver 23 for white 35 others
     F1=F
     F2=float(F)*aspect_ratio
-    is_white=1
+    is_white=0
     is_silver=0
     if is_silver:
         F1=23
         F2=0.5
     if is_white:
         F1=35
-        F2=1
+        F2=0.5
     #generate x pattern
-    phaseshiftingX=sl.XOR(index_last=-1)
-    imlist_patternX=phaseshiftingX.generate((width,height))
+    xor=sl.XOR(index_last=-1)
+    imlist_patternX=xor.generate((width,height))
     #imlist_nega_x_pat=[cv.rotate(img,cv.ROTATE_180) for img in imlist_posi_x_pat]
     #imlist_posi_x_pat.extend(imlist_nega_x_pat)
 
     #generate y pattern
-    #phaseshiftingY=sl.PhaseShifting(num,F2)
-    #imlist_patternY=sl.transpose(phaseshiftingY.generate((width, height)))
+    imlist_patternY=sl.transpose(imlist_patternX)
     #imlist_nega_y_pat=[cv.rotate(img,cv.ROTATE_180) for img in imlist_posi_y_pat]
     #imlist_posi_y_pat.extend(imlist_nega_y_pat)
 
@@ -70,47 +70,55 @@ def main():
     cv.setWindowProperty(capture_window,cv.WND_PROP_FULLSCREEN,cv.WINDOW_FULLSCREEN)
     cv.moveWindow(capture_window,0,0)
     
-    # Capture
+    # CaptureX
+    timeX_start=timeXY_start=time.time()
     imlist_capturesX=[imshowAndCapture(cap,img,fringe_window,capture_window) for img in imlist_patternX]
     #cv.imwrite(save_path+'/rawX_'+specified+'.png',imlist_capturesX[np.random.randint(len(imlist_capturesX))])
 
     # DecodeX
-    #imgX=sl.PhaseShifting().decodeAmplitude(imlist_capturesX)
-    imgX=phaseshiftingX.decode(imlist_capturesX,thresh=10)
+    imgX=xor.decode(imlist_capturesX,thresh=127)
+    timeX_end=time.time()-timeX_start
+    print(f'timeX: {timeX_end*1000} ms')
 
-    # Capture
-    #imlist_capturesY=[imshowAndCapture(cap,img,fringe_window,capture_window) for img in imlist_patternY]
+    # CaptureY
+    timeY_start=time.time()
+    imlist_capturesY=[imshowAndCapture(cap,img,fringe_window,capture_window) for img in imlist_patternY]
     #cv.imwrite(save_path+'/rawY_'+specified+'.png',imlist_capturesY[np.random.randint(len(imlist_capturesY))])
 
     # DecodeY
-    #imgY=sl.PhaseShifting().decodeAmplitude(imlist_capturesY)
+    imgY=xor.decode(imlist_capturesY,thresh=127)
+    timeY_end=time.time()-timeY_start
+    print(f'timeY: {timeY_end*1000} ms')
 
     # Close camera
     cap.end()
 
     # Delete unused variables
-    #del num,F,F1,F2,imlist_patternX,imlist_capturesX,imlist_patternY,imlist_capturesY
+    del imlist_patternX,imlist_capturesX,imlist_patternY,imlist_capturesY
 
     # Visualize decode result
-    img_correspondence=imgX
-    #width,height=1000,100#1000,100#960,102
-    #img_correspondence=cv.addWeighted(imgX,0.5,imgY,0.5,0)
-    #img_correspondence=cv.merge([0.0*np.zeros_like(imgX),imgX/width,imgY/height])
+    width,height=1920,1080#1000,100#960,102
+    img_correspondence=cv.addWeighted(imgX,0.5,imgY,0.5,0)
+    img_correspondence=cv.merge([0.0*np.zeros_like(imgX),imgX/width,imgY/height])
     #img_correspondence=cv.merge([img_correspondence,imgX/width,imgY/height])
     
-    #img_correspondence=np.clip(img_correspondence*255.0,0,255).astype(np.uint8)
-    #img_correspondence=cv.cvtColor(img_correspondence,cv.COLOR_BGR2GRAY)
+    img_correspondence=np.clip(img_correspondence*255.0,0,255).astype(np.uint8)
+    img_correspondence=cv.cvtColor(img_correspondence,cv.COLOR_BGR2GRAY)
+    timeXY_end=time.time()-timeXY_start
+    print(f'timeXY: {timeXY_end*1000} ms')
     
     cv.destroyAllWindows()
-    folder='captures/'
+    algorithm='XOR'
+    folder=f'captures/report/{algorithm}/'
+    algorithm+='_'
     specified=input('enter specific name for the part: ')
     #specified='demo_red'
-    imageX_name='imageX_PhaseShifting_'
-    imageY_name='imageY_PhaseShifting_'
-    imageXY_name='imageXY_PhaseShifting_'
-    save_pathX=folder+imageX_name+specified
-    save_pathY=folder+imageY_name+specified
-    save_pathXY=folder+imageXY_name+specified
+    imageX_name=f'imageX_{algorithm}_'
+    imageY_name=f'imageY_{algorithm}_'
+    imageXY_name=f'imageXY_{algorithm}_'
+    save_pathX=folder+imageX_name+specified+'_F1-'+str(F1)+'_N'+str(num)
+    save_pathY=folder+imageY_name+specified+'_F2-'+str(F2)+'_N'+str(num)
+    save_pathXY=folder+imageXY_name+specified+'_F1-'+str(F1)+'_F2-'+str(F2)+'_N'+str(num)
     while os.path.exists(save_pathX+'.png') or os.path.exists(save_pathY+'.png') or os.path.exists(save_pathXY+'.png'):
         decision=input('the file already exists, do you want to overwrite it? (y/n): ')
         if decision=='y':
@@ -118,7 +126,7 @@ def main():
         else:
             specified=input('please enter another name: ')
     plt.imsave(save_pathX+'.png',imgX,cmap='gray')
-    #plt.imsave(save_pathY+'.png',imgY,cmap='gray')
+    plt.imsave(save_pathY+'.png',imgY,cmap='gray')
     plt.imsave(save_pathXY+'.png',img_correspondence,cmap='gray')
     img_correspondence=cv.imread(save_pathXY+'.png',cv.IMREAD_GRAYSCALE)
     cv.imshow('demo',img_correspondence)

@@ -49,14 +49,13 @@ def main():
         F1=35
         F2=0.5
     #generate x pattern
-    phaseshiftingX=sl.PhaseShifting(num,F1)
-    imlist_patternX=phaseshiftingX.generate((width,height))
+    stripe=sl.Stripe()
+    imlist_patternX=stripe.generate((width,height))
     #imlist_nega_x_pat=[cv.rotate(img,cv.ROTATE_180) for img in imlist_posi_x_pat]
     #imlist_posi_x_pat.extend(imlist_nega_x_pat)
 
     #generate y pattern
-    phaseshiftingY=sl.PhaseShifting(num,F2)
-    imlist_patternY=sl.transpose(phaseshiftingY.generate((width, height)))
+    imlist_patternY=sl.transpose(imlist_patternX)
     #imlist_nega_y_pat=[cv.rotate(img,cv.ROTATE_180) for img in imlist_posi_y_pat]
     #imlist_posi_y_pat.extend(imlist_nega_y_pat)
 
@@ -77,7 +76,7 @@ def main():
     #cv.imwrite(save_path+'/rawX_'+specified+'.png',imlist_capturesX[np.random.randint(len(imlist_capturesX))])
 
     # DecodeX
-    imgX=phaseshiftingX.decodeAmplitude(imlist_capturesX)
+    imgX=stripe.decode(imlist_capturesX)
     timeX_end=time.time()-timeX_start
     print(f'timeX: {timeX_end*1000} ms')
 
@@ -87,7 +86,7 @@ def main():
     #cv.imwrite(save_path+'/rawY_'+specified+'.png',imlist_capturesY[np.random.randint(len(imlist_capturesY))])
 
     # DecodeY
-    imgY=phaseshiftingY.decodeAmplitude(imlist_capturesY)
+    imgY=stripe.decode(imlist_capturesY)
     timeY_end=time.time()-timeY_start
     print(f'timeY: {timeY_end*1000} ms')
 
@@ -109,14 +108,14 @@ def main():
     print(f'timeXY: {timeXY_end*1000} ms')
     
     cv.destroyAllWindows()
-    algorithm='PhaseShifting'
+    algorithm='Stripe'
     folder=f'captures/report/{algorithm}/'
     algorithm+='_'
     specified=input('enter specific name for the part: ')
     #specified='demo_red'
-    imageX_name='imageX_PhaseShifting_'
-    imageY_name='imageY_PhaseShifting_'
-    imageXY_name='imageXY_PhaseShifting_'
+    imageX_name=f'imageX_{algorithm}_'
+    imageY_name=f'imageY_{algorithm}_'
+    imageXY_name=f'imageXY_{algorithm}_'
     save_pathX=folder+imageX_name+specified+'_F1-'+str(F1)+'_N'+str(num)
     save_pathY=folder+imageY_name+specified+'_F2-'+str(F2)+'_N'+str(num)
     save_pathXY=folder+imageXY_name+specified+'_F1-'+str(F1)+'_F2-'+str(F2)+'_N'+str(num)
