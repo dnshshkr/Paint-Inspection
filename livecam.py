@@ -3,9 +3,9 @@ import threading
 import time
 DEFAULT_FILENAME='raw_capture'
 WINDOW_NAME='live cam'
-show_fringe=1
+show_fringe=0
 show_white=0
-firstTimeRun=1
+firstTimeRun=0
 num=7
 F=20
 def main():
