@@ -13,7 +13,7 @@ firstTimeRun=0
 if firstTimeRun:
     basler.Basler.parameterizeCamera()
 screen_id=1
-def imshowAndCapture(cap,img_pattern,winf,winc,delay=400):
+def imshowAndCapture(cap,img_pattern,winf,winc,delay=100):
     cv.imshow(winf,img_pattern)
     cv.waitKey(delay)
     img_gray=cap.retrieve()
@@ -36,29 +36,25 @@ def main():
     except:
         cap=cv.VideoCapture(1) #webcam
         cap.open
-    num:int=3
-    F:float=65 #65 for silver 23 for white 35 others
+    num:int=4
+    F:float=40 #70 for silver 23 for white 35 others
     F1=F
     F2=float(F)*aspect_ratio
     is_white=0
     is_silver=0
-    if is_silver:
-        F1=23
-        F2=0.5
-    if is_white:
-        F1=35
-        F2=0.5
+    # if is_silver:
+    #     F1=23
+    #     F2=0.5
+    # if is_white:
+    #     F1=35
+    #     F2=0.5
     #generate x pattern
     phaseshiftingX=sl.PhaseShifting(num,F1)
     imlist_patternX=phaseshiftingX.generate((width,height))
-    #imlist_nega_x_pat=[cv.rotate(img,cv.ROTATE_180) for img in imlist_posi_x_pat]
-    #imlist_posi_x_pat.extend(imlist_nega_x_pat)
 
     #generate y pattern
     phaseshiftingY=sl.PhaseShifting(num,F2)
     imlist_patternY=sl.transpose(phaseshiftingY.generate((width, height)))
-    #imlist_nega_y_pat=[cv.rotate(img,cv.ROTATE_180) for img in imlist_posi_y_pat]
-    #imlist_posi_y_pat.extend(imlist_nega_y_pat)
 
     #pattern projection screen
     fringe_window='projector'
@@ -74,20 +70,28 @@ def main():
     # CaptureX
     timeX_start=timeXY_start=time.time()
     imlist_capturesX=[imshowAndCapture(cap,img,fringe_window,capture_window) for img in imlist_patternX]
-    #cv.imwrite(save_path+'/rawX_'+specified+'.png',imlist_capturesX[np.random.randint(len(imlist_capturesX))])
 
     # DecodeX
     imgX=phaseshiftingX.decodeAmplitude(imlist_capturesX)
+    if is_silver:
+        imgX=cv.convertScaleAbs(imgX,alpha=1.5,beta=10)
+        imgX=cv.addWeighted(imgX,5,imgX,0,2)
+        # imgX=cv.convertScaleAbs(imgX,alpha=127.0/np.max(imgX))
+        # imgX=cv.addWeighted(imgX,0.5,imgX,0.5,0)
     timeX_end=time.time()-timeX_start
     print(f'timeX: {timeX_end*1000} ms')
 
     # CaptureY
     timeY_start=time.time()
     imlist_capturesY=[imshowAndCapture(cap,img,fringe_window,capture_window) for img in imlist_patternY]
-    #cv.imwrite(save_path+'/rawY_'+specified+'.png',imlist_capturesY[np.random.randint(len(imlist_capturesY))])
 
     # DecodeY
     imgY=phaseshiftingY.decodeAmplitude(imlist_capturesY)
+    if is_silver:
+        imgY=cv.convertScaleAbs(imgY,alpha=1.5,beta=10)
+        imgY=cv.addWeighted(imgY,5,imgY,0,2)
+        # imgY=cv.convertScaleAbs(imgY,alpha=127.0/np.max(imgY))
+        # imgY=cv.addWeighted(imgY,0.5,imgY,0.5,0)
     timeY_end=time.time()-timeY_start
     print(f'timeY: {timeY_end*1000} ms')
 
@@ -98,7 +102,7 @@ def main():
     del imlist_patternX,imlist_capturesX,imlist_patternY,imlist_capturesY
 
     # Visualize decode result
-    width,height=1920,1080#1000,100#960,102
+    width,height=1000,100#960,102
     #img_correspondence=cv.addWeighted(imgX,0.5,imgY,0.5,0)
     img_correspondence=cv.merge([0.0*np.zeros_like(imgX),imgX/width,imgY/height])
     #img_correspondence=cv.merge([img_correspondence,imgX/width,imgY/height])
@@ -110,7 +114,7 @@ def main():
     
     cv.destroyAllWindows()
     algorithm='PhaseShifting'
-    folder=f'captures/report/{algorithm}/'
+    folder=f'captures/{algorithm}/'
     algorithm+='_'
     specified=input('enter specific name for the part: ')
     #specified='demo_red'
@@ -130,6 +134,15 @@ def main():
     plt.imsave(save_pathY+'.png',imgY,cmap='gray')
     plt.imsave(save_pathXY+'.png',img_correspondence,cmap='gray')
     img_correspondence=cv.imread(save_pathXY+'.png',cv.IMREAD_GRAYSCALE)
+    # if is_silver:
+    #     img_correspondence=cv.GaussianBlur(img_correspondence,(5,5),0)
+    #     thresh = cv.adaptiveThreshold(img_correspondence, 65, cv.ADAPTIVE_THRESH_MEAN_C, cv.THRESH_BINARY, 11, 2)
+
+    #     # Find contours in the thresholded image
+    #     contours, _ = cv.findContours(thresh, cv.RETR_EXTERNAL, cv.CHAIN_APPROX_SIMPLE)
+    #     img_correspondence=cv.cvtColor(img_correspondence,cv.COLOR_GRAY2BGR)
+    #     # Draw contours around the bright areas
+    #     cv.drawContours(img_correspondence, contours, -1, (0, 255, 0), 3)
     cv.imshow('demo',img_correspondence)
     cv.setWindowProperty('demo',cv.WND_PROP_AUTOSIZE,cv.WINDOW_NORMAL)
     cv.waitKey(0)
