@@ -1,6 +1,6 @@
+import time
 import basler,cv2,keyboard,pathlib
 import threading
-import time
 DEFAULT_FILENAME='raw_capture'
 WINDOW_NAME='live cam'
 show_fringe=1
