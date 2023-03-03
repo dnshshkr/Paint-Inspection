@@ -5,7 +5,7 @@ DEFAULT_FILENAME='raw_capture'
 WINDOW_NAME='live cam'
 show_fringe=1
 show_white=0
-firstTimeRun=0
+firstTimeRun=1
 num=7
 F=20
 def main():
