@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hdevelop file_version="1.2" halcon_version="18.11.0.1">
+<procedure name="main">
+<interface/>
+<body>
+<l>clear_structured_light_model (StructuredLightModel)</l>
+<l>create_structured_light_model ('deflectometry', StructuredLightModel)</l>
+<l>set_structured_light_model_param (StructuredLightModel, 'pattern_width', 1920)</l>
+<l>set_structured_light_model_param (StructuredLightModel, 'pattern_height', 1080)</l>
+<l>gen_structured_light_pattern (PatternImages, StructuredLightModel)</l>
+</body>
+<docu id="main">
+<parameters/>
+</docu>
+</procedure>
+</hdevelop>
