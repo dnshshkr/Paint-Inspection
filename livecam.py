@@ -1,6 +1,6 @@
+import time
 import basler,cv2,keyboard,pathlib
 import threading
-import time
 DEFAULT_FILENAME='raw_capture'
 WINDOW_NAME='live cam'
 show_fringe=1
@@ -9,7 +9,7 @@ firstTimeRun=1
 num=7
 F=20
 def main():
-    index=12
+    index=45
     if firstTimeRun:
         import screeninfo
         basler.Basler.parameterizeCamera()
@@ -20,7 +20,7 @@ def main():
         import structuredlight as sl
         img=sl.PhaseShifting(num,F)
         imgX=img.generate((1920,1080))
-    cam=basler.Basler(mode=basler.MODE_LIVE,image_size=(1920,1080),rotate_image=180)
+    cam=basler.Basler(mode=basler.MODE_LIVE,image_size=(1920,1080),rotate_image=0)
     cv2.namedWindow(WINDOW_NAME,cv2.WINDOW_GUI_NORMAL)
     cv2.moveWindow(WINDOW_NAME,0,0)
     if show_fringe:
